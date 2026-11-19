@@ -368,14 +368,15 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
               Close
             </button>
 
-            <button
-              type="button"
-              onClick={() => onBookKlnk(tour)}
+            <a
+              href={tour.klnkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-brand-coral hover:bg-brand-coral-hover text-white transition-colors flex items-center gap-1.5 shadow-sm cursor-pointer"
             >
               <span>Reserve Direct via staging.klnk.tv</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

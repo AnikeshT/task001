@@ -135,7 +135,7 @@ export const MASTER_TOURS: TourItem[] = [
   {
     id: 'tour-amalfi-riviera-yacht',
     klnkSlug: 'amalfi-private-yacht-positano-capri',
-    klnkUrl: 'https://staging.klnk.tv/amalfi-private-yacht-positano-capri',
+    klnkUrl: 'https://staging.klnk.tv/pushpak/2de2d421/italy-trip',
     name: 'Amalfi Coast & Capri: Private Riva Yacht & Cliffside Villa Escape',
     subtitle: '5-Day bespoke coastal immersion across Positano, Capri’s Faraglioni & Ravello cliff gardens',
     destination: 'Positano, Capri & Ravello',
@@ -235,7 +235,7 @@ export const MASTER_TOURS: TourItem[] = [
   {
     id: 'tour-tuscany-brunello-estates',
     klnkSlug: 'tuscany-brunello-estates-truffle-immersion',
-    klnkUrl: 'https://staging.klnk.tv/tuscany-brunello-estates-truffle-immersion',
+    klnkUrl: 'https://staging.klnk.tv/pushpak/2de2d421/italy-trip',
     name: 'Tuscany & Val d’Orcia: Grand Cru Brunello Vaults & Black Truffle Hunt',
     subtitle: '6-Day immersive oenological expedition across Montalcino, Chianti Classico & Renaissance Florence',
     destination: 'Florence, Siena & Val d’Orcia',
@@ -344,7 +344,7 @@ export const MASTER_TOURS: TourItem[] = [
   {
     id: 'tour-dolomites-alpine-traverse',
     klnkSlug: 'dolomites-high-alpine-via-ferrata-luxury-rifugi',
-    klnkUrl: 'https://staging.klnk.tv/dolomites-high-alpine-via-ferrata-luxury-rifugi',
+    klnkUrl: 'https://staging.klnk.tv/pushpak/2de2d421/italy-trip',
     name: 'Dolomites Alpine Traverse: High-Altitude Via Ferrata & Luxury Rifugi',
     subtitle: '7-Day UIAGM-guided mountaineering traverse across Cortina d’Ampezzo, Tre Cime & Val Badia',
     destination: 'Cortina d’Ampezzo & South Tyrol',
@@ -462,7 +462,7 @@ export const MASTER_TOURS: TourItem[] = [
   {
     id: 'tour-sicily-aeolian-islands-catamaran',
     klnkSlug: 'sicily-aeolian-islands-catamaran-taormina',
-    klnkUrl: 'https://staging.klnk.tv/sicily-aeolian-islands-catamaran-taormina',
+    klnkUrl: 'https://staging.klnk.tv/pushpak/2de2d421/italy-trip',
     name: 'Sicilia & Aeolian Islands: Volcanoes, Taormina & Private Catamaran',
     subtitle: '7-Day luxury voyage across Mount Etna vineyards, Panarea jet-set bays & Stromboli night eruption sails',
     destination: 'Taormina, Etna & Aeolian Islands',
@@ -580,7 +580,7 @@ export const MASTER_TOURS: TourItem[] = [
   {
     id: 'tour-lake-como-riva-heritage',
     klnkSlug: 'lake-como-riva-heritage-aristocratic-villas',
-    klnkUrl: 'https://staging.klnk.tv/lake-como-riva-heritage-aristocratic-villas',
+    klnkUrl: 'https://staging.klnk.tv/pushpak/2de2d421/italy-trip',
     name: 'Lake Como: Vintage Mahogany Riva & Aristocratic Villa Estates',
     subtitle: '4-Day private nautical journey through Bellagio, Villa Balbianello & Tremezzo lakefront palazzi',
     destination: 'Bellagio, Tremezzo & Varenna',
@@ -669,7 +669,7 @@ export const MASTER_TOURS: TourItem[] = [
   {
     id: 'tour-venice-serenissima-palazzi',
     klnkSlug: 'venice-serenissima-private-water-limousine-crypts',
-    klnkUrl: 'https://staging.klnk.tv/venice-serenissima-private-water-limousine-crypts',
+    klnkUrl: 'https://staging.klnk.tv/pushpak/2de2d421/italy-trip',
     name: 'Venice: Private Mahogany Water Limousine & Doge Secret Palazzi',
     subtitle: '5-Day noble Venetian immersion with after-hours St. Mark’s crypts & secret lagoon island vineyards',
     destination: 'Venice & Venetian Lagoon',
@@ -767,7 +767,7 @@ export const MASTER_TOURS: TourItem[] = [
   {
     id: 'tour-italian-riviera-portofino',
     klnkSlug: 'italian-riviera-portofino-san-fruttuoso-cinque-terre',
-    klnkUrl: 'https://staging.klnk.tv/italian-riviera-portofino-san-fruttuoso-cinque-terre',
+    klnkUrl: 'https://staging.klnk.tv/pushpak/2de2d421/italy-trip',
     name: 'Italian Riviera: Portofino Coves & Cinque Terre Cliffside Sail',
     subtitle: '5-Day luxury coastal cruise along the Gulf of Tigullio, San Fruttuoso Abbey & Vernazza cliffs',
     destination: 'Portofino, San Fruttuoso & Cinque Terre',
@@ -865,7 +865,7 @@ export const MASTER_TOURS: TourItem[] = [
   {
     id: 'tour-piedmont-langhe-barolo',
     klnkSlug: 'piedmont-langhe-barolo-alba-white-truffle-cellars',
-    klnkUrl: 'https://staging.klnk.tv/piedmont-langhe-barolo-alba-white-truffle-cellars',
+    klnkUrl: 'https://staging.klnk.tv/pushpak/2de2d421/italy-trip',
     name: 'Piedmont Langhe: Alba White Truffles & Royal Barolo Grand Cru',
     subtitle: '5-Day elite gastronomic expedition through mist-veiled Langhe hills, Savoy castles & library wine cellars',
     destination: 'Alba, Barolo & Barbaresco',

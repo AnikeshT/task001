@@ -74,7 +74,7 @@ export default function ThankYouPage() {
             {/* Wallet Pass Buttons */}
             <div className="pt-4 border-t border-brand-border flex flex-col sm:flex-row items-center gap-3">
               <a
-                href="https://staging.klnk.tv"
+                href="https://staging.klnk.tv/pushpak/2de2d421/italy-trip"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-1/2 py-2.5 px-4 rounded-lg bg-[#1a1d24] border border-brand-border hover:border-white/40 text-white text-xs font-medium flex items-center justify-center gap-2 transition-all"
@@ -83,7 +83,7 @@ export default function ThankYouPage() {
                 <span>Add to Apple Wallet</span>
               </a>
               <a
-                href="https://staging.klnk.tv"
+                href="https://staging.klnk.tv/pushpak/2de2d421/italy-trip"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-1/2 py-2.5 px-4 rounded-lg bg-[#1a1d24] border border-brand-border hover:border-white/40 text-white text-xs font-medium flex items-center justify-center gap-2 transition-all"

@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="https://staging.klnk.tv"
+                  href="https://staging.klnk.tv/pushpak/2de2d421/italy-trip"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors flex items-center gap-1.5"
@@ -189,7 +189,7 @@ export const Footer: React.FC = () => {
             <Link href="/terms" className="hover:text-brand-primary transition-colors">Terms of Service</Link>
             <Link href="/thank-you" className="hover:text-brand-primary transition-colors">Confirmation Portal</Link>
             <a
-              href="https://staging.klnk.tv"
+              href="https://staging.klnk.tv/pushpak/2de2d421/italy-trip"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-brand-primary text-brand-coral font-medium"

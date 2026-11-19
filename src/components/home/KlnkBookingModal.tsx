@@ -43,7 +43,10 @@ export const KlnkBookingModal: React.FC<KlnkBookingModalProps> = ({
     setTimeout(() => {
       setIsSimulatingBooking(false);
       setBookingSuccess(true);
-    }, 900);
+      if (tour?.klnkUrl && typeof window !== 'undefined') {
+        window.open(tour.klnkUrl, '_blank');
+      }
+    }, 600);
   };
 
   return (

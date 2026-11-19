@@ -139,14 +139,15 @@ export const TourCard: React.FC<TourCardProps> = ({
               Itinerary
             </button>
 
-            <button
-              type="button"
-              onClick={() => onBookKlnk(tour)}
+            <a
+              href={tour.klnkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-coral hover:bg-brand-coral-hover text-white transition-colors flex items-center gap-1 shadow-sm cursor-pointer"
             >
               <span>Book Direct</span>
               <ArrowRight className="w-3 h-3" />
-            </button>
+            </a>
           </div>
         </div>
       </div>
