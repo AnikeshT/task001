@@ -1,18 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import {
-  Star,
-  Clock,
-  Users,
-  MapPin,
-  ShieldCheck,
-  ArrowRight,
-  ExternalLink,
-  Sparkles,
-  Zap,
-} from 'lucide-react';
+import { Star, Clock, MapPin, ShieldCheck, ArrowRight, Zap } from 'lucide-react';
 import { TourItem, Currency } from '../../lib/types';
 import { formatPrice } from '../../lib/utils';
 
@@ -33,118 +22,119 @@ export const TourCard: React.FC<TourCardProps> = ({
     currency === 'EUR' ? tour.priceEur : currency === 'GBP' ? tour.priceGbp : tour.priceUsd;
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5 }}
-      className="group relative flex flex-col rounded-2xl bg-brand-card border border-white/10 hover:border-brand-coral/50 transition-all duration-300 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-brand-coral/5"
-    >
-      {/* Media Header with Image Carousel / Featured Photo */}
-      <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900 cursor-pointer" onClick={() => onOpenDetail(tour)}>
+    <article className="group flex flex-col rounded-xl bg-brand-surface border border-brand-border hover:border-brand-border-strong transition-all duration-200 overflow-hidden shadow-card hover:shadow-card-hover">
+      {/* Media Header */}
+      <div
+        className="relative aspect-[16/10] w-full overflow-hidden bg-[#0e1013] cursor-pointer"
+        onClick={() => onOpenDetail(tour)}
+      >
         <div
           role="img"
           aria-label={`Panoramic photo of ${tour.name} in ${tour.destination}, Italy`}
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           style={{ backgroundImage: `url('${tour.heroImage}')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#14161b] via-transparent to-black/25 opacity-90" />
 
         {/* Top Badges */}
-        <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5">
             {tour.badge && (
-              <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-brand-coral text-white shadow-md">
+              <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-brand-coral text-white shadow-sm">
                 {tour.badge}
               </span>
             )}
-            <span className="px-2.5 py-1 rounded-full text-[10px] font-medium bg-brand-dark/80 backdrop-blur-md text-white border border-white/10">
+            <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#0e1013]/85 text-brand-secondary border border-brand-border backdrop-blur-sm">
               {tour.travelStyle}
             </span>
           </div>
 
-          {/* Instant KLNK Badge */}
           {tour.instantBooking && (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-brand-emerald/90 text-white flex items-center gap-1 shadow-sm">
-              <Zap className="w-3 h-3 fill-white" />
-              <span>Instant KLNK</span>
+            <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-brand-emerald text-black flex items-center gap-1">
+              <Zap className="w-2.5 h-2.5 fill-black" />
+              <span>Instant Pass</span>
             </span>
           )}
         </div>
 
-        {/* Destination & Duration Bottom Floating Pill */}
-        <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between text-xs text-white">
-          <div className="flex items-center gap-1 font-medium bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full">
-            <MapPin className="w-3.5 h-3.5 text-brand-coral" />
+        {/* Destination & Duration Floating Pill */}
+        <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-xs text-white">
+          <div className="flex items-center gap-1 font-medium bg-[#0e1013]/85 px-2.5 py-1 rounded-md border border-brand-border backdrop-blur-sm text-[11px]">
+            <MapPin className="w-3 h-3 text-brand-coral" />
             <span>{tour.destination}</span>
           </div>
-          <div className="flex items-center gap-1 font-medium bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full">
-            <Clock className="w-3.5 h-3.5 text-slate-300" />
+          <div className="flex items-center gap-1 font-mono font-medium bg-[#0e1013]/85 px-2.5 py-1 rounded-md border border-brand-border backdrop-blur-sm text-[11px] text-brand-secondary">
+            <Clock className="w-3 h-3 text-brand-muted" />
             <span>{tour.durationLabel}</span>
           </div>
         </div>
       </div>
 
-      {/* Card Body */}
-      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+      {/* Card Content Body */}
+      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
         {/* Rating and Operator Row */}
-        <div className="flex items-center justify-between text-xs text-slate-400">
-          <div className="flex items-center gap-1">
+        <div className="flex items-center justify-between text-xs text-brand-secondary">
+          <div className="flex items-center gap-1.5">
             <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-            <span className="font-bold text-white">{tour.rating}</span>
-            <span className="text-slate-400">({tour.reviewCount} reviews)</span>
+            <span className="font-semibold text-brand-primary">{tour.rating}</span>
+            <span className="text-brand-muted text-[11px]">({tour.reviewCount})</span>
           </div>
 
-          {/* Operator Badge */}
+          {/* Verified Italian Operator Badge */}
           <div
-            className="flex items-center gap-1.5 text-[11px] text-slate-300 hover:text-white"
-            title={`Operated by ${tour.operator.name}`}
+            className="flex items-center gap-1.5 text-xs text-brand-secondary hover:text-brand-primary transition-colors"
+            title={`Operated by verified Italian master: ${tour.operator.name}`}
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-brand-emerald" />
-            <span className="truncate max-w-[140px]">{tour.operator.name}</span>
+            <img
+              src={tour.operator.avatarUrl}
+              alt={tour.operator.name}
+              className="w-4 h-4 rounded-full object-cover border border-brand-border shrink-0"
+            />
+            <span className="truncate max-w-[130px] font-medium">{tour.operator.name}</span>
+            <ShieldCheck className="w-3.5 h-3.5 text-brand-emerald shrink-0" />
           </div>
         </div>
 
-        {/* Title & Subtitle */}
+        {/* Title and Subtitle */}
         <div className="space-y-1.5 cursor-pointer" onClick={() => onOpenDetail(tour)}>
-          <h3 className="text-lg font-bold text-white group-hover:text-brand-coral transition-colors leading-snug line-clamp-2">
+          <h3 className="text-base font-bold text-brand-primary group-hover:text-brand-coral transition-colors leading-snug line-clamp-2">
             {tour.name}
           </h3>
-          <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-brand-secondary line-clamp-2 leading-relaxed">
             {tour.subtitle}
           </p>
         </div>
 
-        {/* Highlights List */}
-        <div className="pt-2 border-t border-white/10 space-y-1">
+        {/* 2 Key Highlights */}
+        <div className="pt-2 border-t border-brand-border space-y-1">
           {tour.highlights.slice(0, 2).map((h, i) => (
-            <div key={i} className="flex items-start gap-1.5 text-xs text-slate-300">
+            <div key={i} className="flex items-start gap-1.5 text-xs text-brand-secondary">
               <span className="w-1 h-1 rounded-full bg-brand-coral mt-1.5 shrink-0" />
               <span className="line-clamp-1">{h}</span>
             </div>
           ))}
         </div>
 
-        {/* Price & Action Row */}
-        <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+        {/* Price & Actions Row */}
+        <div className="pt-3.5 border-t border-brand-border flex items-center justify-between gap-3">
           <div>
-            <span className="text-[10px] uppercase font-semibold text-slate-400 block tracking-wider">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-brand-muted block">
               From per guest
             </span>
             <div className="flex items-baseline gap-1">
-              <span className="text-xl font-mono font-bold text-white">
+              <span className="text-lg font-mono font-bold text-brand-primary">
                 {formatPrice(currentPrice, currency)}
               </span>
-              <span className="text-[11px] text-slate-400 font-mono">/ all-inclusive</span>
+              <span className="text-[10px] text-brand-muted font-mono">all-inclusive</span>
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2">
+          {/* Dual Action Buttons */}
+          <div className="flex items-center gap-1.5">
             <button
               type="button"
               onClick={() => onOpenDetail(tour)}
-              className="px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer"
+              className="px-3 py-1.5 rounded-lg text-xs font-medium text-brand-secondary hover:text-white bg-[#0e1013] hover:bg-brand-surface-elevated border border-brand-border transition-colors cursor-pointer"
             >
               Itinerary
             </button>
@@ -152,14 +142,14 @@ export const TourCard: React.FC<TourCardProps> = ({
             <button
               type="button"
               onClick={() => onBookKlnk(tour)}
-              className="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-brand-coral hover:bg-brand-coral-hover text-white transition-all shadow-md flex items-center gap-1 active:scale-95 cursor-pointer"
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-coral hover:bg-brand-coral-hover text-white transition-colors flex items-center gap-1 shadow-sm cursor-pointer"
             >
-              <span>Book KLNK</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Book Direct</span>
+              <ArrowRight className="w-3 h-3" />
             </button>
           </div>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 };

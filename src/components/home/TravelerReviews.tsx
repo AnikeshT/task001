@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Star, ShieldCheck, Quote } from 'lucide-react';
+import { Star, ShieldCheck } from 'lucide-react';
 
 export const TravelerReviews: React.FC = () => {
   const reviews = [
@@ -35,50 +35,66 @@ export const TravelerReviews: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
-      <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
-        <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400">
-          <Star className="w-4 h-4 fill-amber-400" />
-          <span>Real Traveler Stories</span>
+    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10 border-b border-brand-border">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="space-y-2 max-w-2xl">
+          <span className="text-xs font-mono uppercase tracking-widest text-amber-400 font-semibold">
+            Verified Guest Impressions
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-sans font-bold text-brand-primary tracking-tight">
+            Rated 4.98 / 5 Across 2,400+ Journeys
+          </h2>
+          <p className="text-brand-secondary text-xs sm:text-sm leading-relaxed">
+            Read candid notes from travelers who explored Italy’s luxury terroirs with our verified Italian operators.
+          </p>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-sans font-bold text-white tracking-tight">
-          Rated 4.98 / 5 Across 2,400+ Journeys
-        </h2>
-        <p className="text-sm text-slate-400">
-          Read candid reviews from travelers who explored Italy’s luxury terroirs with our verified Italian operators.
-        </p>
+
+        <div className="text-xs text-brand-muted font-mono shrink-0 flex items-center gap-1.5">
+          <ShieldCheck className="w-4 h-4 text-brand-emerald" />
+          <span>100% Verified Direct Departures</span>
+        </div>
       </div>
 
+      {/* 3 Editorial Reviews */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {reviews.map((r, i) => (
           <div
             key={i}
-            className="p-6 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between space-y-4 shadow-xl relative"
+            className="rounded-xl bg-brand-surface border border-brand-border p-6 flex flex-col justify-between space-y-4 hover:border-brand-border-strong transition-colors"
           >
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
+              {/* Stars & Date */}
+              <div className="flex items-center justify-between text-xs">
                 <div className="flex text-amber-400">
                   {[...Array(r.rating)].map((_, idx) => (
-                    <Star key={idx} className="w-4 h-4 fill-amber-400" />
+                    <Star key={idx} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <span className="text-[11px] font-mono text-slate-400">{r.date}</span>
+                <span className="text-[11px] font-mono text-brand-muted">{r.date}</span>
               </div>
 
-              <p className="text-xs text-slate-300 leading-relaxed italic">
-                "{r.text}"
+              {/* Quote */}
+              <p className="text-xs sm:text-sm text-brand-secondary leading-relaxed italic">
+                &ldquo;{r.text}&rdquo;
               </p>
+
+              {/* Tour Referenced */}
+              <div className="pt-2 text-[11px] font-mono text-brand-coral font-medium">
+                {r.tourTitle}
+              </div>
             </div>
 
-            <div className="pt-4 border-t border-white/10 flex items-center gap-3">
-              <div
-                className="w-10 h-10 rounded-full bg-cover bg-center border border-white/20 shrink-0"
-                style={{ backgroundImage: `url('${r.avatar}')` }}
+            {/* Author Attribution */}
+            <div className="pt-3 border-t border-brand-border flex items-center gap-3">
+              <img
+                src={r.avatar}
+                alt={r.author}
+                className="w-9 h-9 rounded-full object-cover border border-brand-border shrink-0"
               />
-              <div className="overflow-hidden min-w-0">
-                <h4 className="text-xs font-bold text-white truncate">{r.author}</h4>
-                <p className="text-[11px] text-slate-400 truncate">{r.location}</p>
-                <p className="text-[10px] text-brand-coral font-medium truncate mt-0.5">{r.tourTitle}</p>
+              <div className="text-xs">
+                <p className="font-bold text-brand-primary">{r.author}</p>
+                <p className="text-[11px] text-brand-muted">{r.location}</p>
               </div>
             </div>
           </div>

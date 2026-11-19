@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ShieldCheck, Award, MessageSquare, Star, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Clock, ArrowRight } from 'lucide-react';
 import { MASTER_OPERATORS } from '../../data/toursData';
 
 interface OperatorSpotlightProps {
@@ -15,74 +14,84 @@ export const OperatorSpotlight: React.FC<OperatorSpotlightProps> = ({
   const operatorsList = Object.values(MASTER_OPERATORS);
 
   return (
-    <section id="operators" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
+    <section id="operators" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10 border-b border-brand-border">
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-brand-emerald">
-          <ShieldCheck className="w-4 h-4" />
-          <span>Vetted Independent Masters</span>
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="space-y-2 max-w-2xl">
+          <span className="text-xs font-mono uppercase tracking-widest text-brand-emerald font-semibold">
+            Independent Host Verification
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-sans font-bold text-brand-primary tracking-tight">
+            Verified Italian Master Operators
+          </h2>
+          <p className="text-brand-secondary text-xs sm:text-sm leading-relaxed">
+            Every expedition is owned and operated by licensed local craftsmen: Guardia Costiera maritime captains, UIAGM alpine guides, and multi-generational wine estates.
+          </p>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-sans font-bold text-white tracking-tight">
-          Meet the Local Operators Behind Tourpublish
-        </h2>
-        <p className="text-sm text-slate-400 leading-relaxed">
-          We don’t aggregate anonymous mass tours. Every expedition in Tourpublish is designed, owned, and guided by recognized local craftsmen, certified mountaineers, and heritage estate guilds.
-        </p>
+
+        <div className="text-xs text-brand-muted font-mono shrink-0">
+          8 Certified Italian Guilds • Zero Middlemen
+        </div>
       </div>
 
-      {/* Operator Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {operatorsList.map((op, idx) => (
-          <motion.div
+      {/* Structured Operator Directory Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {operatorsList.map(op => (
+          <div
             key={op.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
-            className="p-6 rounded-2xl bg-brand-card border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl"
+            className="rounded-xl bg-brand-surface border border-brand-border p-5 space-y-4 flex flex-col justify-between hover:border-brand-border-strong transition-colors"
           >
-            {/* Top Row: Avatar & Bio */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <div
-                  role="img"
-                  aria-label={`Portrait of Italian master operator ${op.name}`}
-                  className="w-16 h-16 rounded-2xl bg-cover bg-center border border-white/20 shrink-0 shadow-md"
-                  style={{ backgroundImage: `url('${op.avatarUrl}')` }}
+            <div className="space-y-3">
+              {/* Header with Avatar & Status */}
+              <div className="flex items-center gap-3">
+                <img
+                  src={op.avatarUrl}
+                  alt={op.name}
+                  className="w-12 h-12 rounded-lg object-cover border border-brand-border shrink-0"
                 />
-                <div className="overflow-hidden min-w-0">
+                <div className="min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <h3 className="text-base font-bold text-white truncate">{op.name}</h3>
-                    <ShieldCheck className="w-4 h-4 text-brand-emerald shrink-0" />
+                    <h3 className="text-sm font-bold text-brand-primary truncate">{op.name}</h3>
+                    <ShieldCheck className="w-3.5 h-3.5 text-brand-emerald shrink-0" />
                   </div>
-                  <p className="text-xs text-brand-coral font-medium truncate">{op.tagline}</p>
-                  <p className="text-[11px] text-slate-400">{op.location} • Est. {op.foundedYear}</p>
+                  <p className="text-[11px] text-brand-secondary truncate">{op.location}</p>
+                  <span className="text-[10px] font-mono text-brand-muted">Est. {op.foundedYear}</span>
                 </div>
               </div>
 
-              <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
+              {/* Specialty & Bio */}
+              <p className="text-xs text-brand-secondary line-clamp-3 leading-relaxed">
                 {op.bio}
               </p>
+
+              {/* Authentic Host Quote */}
+              {op.quotes && (
+                <div className="rounded-lg bg-[#0e1013] p-2.5 border border-brand-border text-[11px] text-brand-secondary italic">
+                  &ldquo;{op.quotes}&rdquo;
+                </div>
+              )}
             </div>
 
-            {/* Bottom Row: Stats & View Tours */}
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-              <div className="flex items-center gap-1 text-amber-400 font-bold">
-                <Star className="w-3.5 h-3.5 fill-amber-400" />
-                <span>{op.rating}</span>
-                <span className="text-slate-400 font-normal">({op.reviewCount})</span>
+            {/* Bottom Meta & Action */}
+            <div className="pt-3 border-t border-brand-border space-y-2">
+              <div className="flex items-center justify-between text-[11px] text-brand-muted font-mono">
+                <span className="flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  <span>Responds {op.responseTime}</span>
+                </span>
+                <span className="text-amber-400 font-semibold">★ {op.rating}</span>
               </div>
 
               <button
                 type="button"
                 onClick={() => onSelectOperatorTour(op.name)}
-                className="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1 group transition-colors cursor-pointer"
+                className="w-full py-1.5 rounded-md text-xs font-medium text-brand-secondary hover:text-white bg-[#0e1013] hover:bg-brand-surface-elevated border border-brand-border transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <span>View Expeditions</span>
-                <ArrowRight className="w-3.5 h-3.5 text-brand-coral group-hover:translate-x-0.5 transition-transform" />
+                <span>View Hosted Tours</span>
+                <ArrowRight className="w-3 h-3" />
               </button>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

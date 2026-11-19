@@ -1,112 +1,141 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Sparkles, Search, ShieldCheck, Smartphone, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Smartphone, Search, Check, X } from 'lucide-react';
 
 export const HowItWorks: React.FC = () => {
   const steps = [
     {
-      step: '01',
-      title: 'Explore Italian Terroirs',
-      subtitle: 'Verified local masters, zero generic aggregators',
-      description:
-        'Browse intimate private Riva charters, private Brunello cellar masterclasses, and certified Dolomites traverses. Every tour is vetted for historical authenticity, safety, and exclusivity.',
-      badge: 'Italian Curation',
+      num: '01',
+      title: 'Handcrafted Terroir Selection',
+      desc: 'Browse private Italian yacht charters, grand cru vaults, and certified alpine traverses. Every journey is curated for privacy, historical authenticity, and small group intimacy.',
       icon: Search,
     },
     {
-      step: '02',
-      title: 'Direct Operator Checkout via staging.klnk.tv',
-      subtitle: 'Zero commission markups, 100% transparent pricing',
-      description:
-        'When you select an Italian expedition, you checkout directly with the verified local operator powered by staging.klnk.tv secure payment infrastructure. No middleman agencies or surprise fees.',
-      badge: 'staging.klnk.tv Engine',
+      num: '02',
+      title: 'Direct Checkout via staging.klnk.tv',
+      desc: 'Reserve directly with the verified Italian operator. Payment is processed securely via staging.klnk.tv with zero middleman commissions or hidden booking fees.',
       icon: ShieldCheck,
     },
     {
-      step: '03',
-      title: 'Instant Apple & Google Wallet Pass',
-      subtitle: 'Live itinerary, GPS meeting points, offline entry',
-      description:
-        'Instantly receive your cryptographic digital boarding pass with embedded marina gate access, emergency concierge contacts, and live updates directly on your smartphone.',
-      badge: 'Digital Pass',
+      num: '03',
+      title: 'Instant Mobile Wallet Pass',
+      desc: 'Receive an encrypted Apple Wallet or Google Wallet pass with offline marina gate entry, GPS meeting coordinates, and 24/7 Rome concierge contact.',
       icon: Smartphone,
     },
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-coral/10 border border-brand-coral/20 text-brand-coral text-xs font-semibold uppercase tracking-widest">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>The Modern Way to Travel</span>
-        </div>
-        <h2 className="text-3xl sm:text-5xl font-sans font-bold text-white tracking-tight">
-          How Tourpublish &{' '}
-          <span className="font-serif italic font-normal text-brand-coral">
-            KLNK Redefine Booking
-          </span>
+    <section id="why-tourpublish" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 border-b border-brand-border">
+      {/* Editorial Header */}
+      <div className="max-w-2xl space-y-2">
+        <span className="text-xs font-mono uppercase tracking-widest text-brand-coral font-semibold">
+          The Direct Model
+        </span>
+        <h2 className="text-2xl sm:text-4xl font-sans font-bold text-brand-primary tracking-tight">
+          How Direct Operator Booking Works
         </h2>
-        <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-          Traditional booking portals charge up to 30% commission and hide the true host. Tourpublish connects discerning travelers directly to generational masters.
+        <p className="text-brand-secondary text-xs sm:text-sm leading-relaxed">
+          Traditional booking portals charge up to 35% commission and isolate travelers from their true host. Tourpublish connects you directly to generational Italian masters.
         </p>
       </div>
 
-      {/* Steps Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-        {steps.map((item, idx) => {
-          const Icon = item.icon;
+      {/* 3-Step Horizontal Timeline */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {steps.map(step => {
+          const Icon = step.icon;
           return (
-            <motion.div
-              key={item.step}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="relative rounded-3xl border border-white/10 bg-brand-card/80 p-8 space-y-6 flex flex-col justify-between hover:border-brand-coral/40 transition-all duration-300 group shadow-lg"
+            <div
+              key={step.num}
+              className="rounded-xl bg-brand-surface border border-brand-border p-6 space-y-4 flex flex-col justify-between"
             >
-              <div className="space-y-4">
-                {/* Step Top Bar */}
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-3xl font-black text-brand-coral/40 group-hover:text-brand-coral transition-colors">
-                    {item.step}
+                  <span className="font-mono text-2xl font-bold text-brand-coral">
+                    {step.num}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono uppercase tracking-wider bg-white/5 border border-white/10 text-slate-300">
-                    {item.badge}
-                  </span>
+                  <div className="w-8 h-8 rounded-lg bg-[#0e1013] border border-brand-border flex items-center justify-center text-brand-secondary">
+                    <Icon className="w-4 h-4" />
+                  </div>
                 </div>
 
-                {/* Icon Box */}
-                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-coral group-hover:scale-110 group-hover:bg-brand-coral/10 transition-all duration-300">
-                  <Icon className="w-6 h-6" />
-                </div>
+                <h3 className="text-base font-bold text-brand-primary">
+                  {step.title}
+                </h3>
 
-                {/* Title & Subtitle */}
-                <div className="space-y-1">
-                  <h3 className="text-xl font-sans font-bold text-white tracking-tight group-hover:text-brand-coral transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs font-medium text-slate-400">
-                    {item.subtitle}
-                  </p>
-                </div>
-
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                  {item.description}
+                <p className="text-xs text-brand-secondary leading-relaxed">
+                  {step.desc}
                 </p>
               </div>
 
-              {/* Bottom Feature Pill */}
-              <div className="pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-slate-300">
-                <CheckCircle2 className="w-4 h-4 text-brand-emerald shrink-0" />
-                <span>Verified Direct Guarantee</span>
+              <div className="pt-3 border-t border-brand-border/60 text-[11px] font-mono text-brand-muted flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald" />
+                <span>Verified Italian Host Guarantee</span>
               </div>
-            </motion.div>
+            </div>
           );
         })}
+      </div>
+
+      {/* Transparent Comparison Table */}
+      <div className="rounded-xl bg-brand-surface border border-brand-border overflow-hidden">
+        <div className="p-4 sm:p-5 border-b border-brand-border bg-[#0e1013]/60">
+          <h3 className="text-sm font-bold text-brand-primary">
+            Why Direct on staging.klnk.tv Makes a Difference
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-brand-border text-xs">
+          {/* Tourpublish Column */}
+          <div className="p-5 space-y-3">
+            <span className="text-xs font-bold text-brand-coral font-mono uppercase tracking-wider block">
+              Tourpublish + staging.klnk.tv
+            </span>
+            <ul className="space-y-2 text-brand-secondary">
+              <li className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-brand-emerald shrink-0 mt-0.5" />
+                <span><strong>0% Middleman Markups:</strong> Local operator rates straight to the host.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-brand-emerald shrink-0 mt-0.5" />
+                <span><strong>Direct Host Line:</strong> Speak directly to your captain or sommelier.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-brand-emerald shrink-0 mt-0.5" />
+                <span><strong>Instant Digital Wallet Pass:</strong> Apple &amp; Google Wallet offline check-in.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-brand-emerald shrink-0 mt-0.5" />
+                <span><strong>7-Day Free Cancellation:</strong> Full 100% refund without penalty.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Traditional OTA Column */}
+          <div className="p-5 space-y-3 bg-[#0e1013]/30">
+            <span className="text-xs font-bold text-brand-muted font-mono uppercase tracking-wider block">
+              Traditional Travel Aggregators
+            </span>
+            <ul className="space-y-2 text-brand-muted">
+              <li className="flex items-start gap-2">
+                <X className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                <span>25–35% hidden commission inflated into tour retail prices.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <X className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                <span>Anonymous call center support with no local Italian staff.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <X className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                <span>Paper PDF vouchers requiring physical hotel printing.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <X className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                <span>Complicated vouchers and non-refundable deposit traps.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );
