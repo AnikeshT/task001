@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Cookie, X } from 'lucide-react';
+import { Cookie, X, ShieldCheck } from 'lucide-react';
 
 export const CookieBanner: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -37,32 +37,32 @@ export const CookieBanner: React.FC = () => {
 
   return (
     <aside
-      className="fixed bottom-20 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 rounded-xl bg-[#14161b] border border-brand-border-strong p-4 shadow-dropdown text-xs space-y-3"
+      className="fixed bottom-20 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 rounded-2xl bg-white border border-canvas-border p-5 shadow-2xl text-xs space-y-3.5"
       role="region"
       aria-label="Cookie consent banner"
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-2 text-brand-primary font-bold text-xs sm:text-sm">
+        <div className="flex items-center gap-2 font-display font-bold text-sm text-ink">
           <Cookie className="w-4 h-4 text-brand-coral shrink-0" />
-          <span>Italian Privacy &amp; Cookie Notice</span>
+          <span>Privacy &amp; Cookie Preferences</span>
         </div>
         <button
           onClick={handleDecline}
-          className="text-brand-muted hover:text-white p-1"
+          className="text-ink-muted hover:text-ink p-1 rounded-lg transition-colors cursor-pointer"
           aria-label="Close cookie banner"
         >
           <X className="w-3.5 h-3.5" />
         </button>
       </div>
 
-      <p className="text-brand-secondary leading-relaxed text-[11px]">
-        We use essential cookies to maintain your currency preference and filters, and privacy-first analytics to ensure high-speed directory performance. Under Italian GDPR, we never sell your personal data.
+      <p className="text-ink-soft leading-relaxed text-xs">
+        We use essential cookies to remember your currency preference and filters, and anonymous analytics to ensure fast directory performance. We never sell your data or share it with third-party advertisers.
       </p>
 
-      <div className="flex items-center justify-between gap-2 pt-1 border-t border-brand-border">
+      <div className="flex items-center justify-between gap-3 pt-2 border-t border-canvas-border">
         <Link
           href="/privacy"
-          className="text-[11px] text-brand-coral hover:underline font-medium"
+          className="text-[11px] text-brand-coral hover:underline font-semibold"
         >
           Privacy Policy
         </Link>
@@ -71,14 +71,14 @@ export const CookieBanner: React.FC = () => {
           <button
             type="button"
             onClick={handleDecline}
-            className="px-2.5 py-1 rounded-md text-brand-secondary hover:text-white bg-brand-surface border border-brand-border text-[11px] font-medium transition-colors"
+            className="px-3 py-1.5 rounded-full text-ink-soft hover:text-ink bg-canvas-card border border-canvas-border text-[11px] font-semibold transition-colors cursor-pointer"
           >
             Essential Only
           </button>
           <button
             type="button"
             onClick={handleAccept}
-            className="px-3 py-1 rounded-md bg-brand-coral hover:bg-brand-coral-hover text-white text-[11px] font-semibold transition-colors"
+            className="px-4 py-1.5 rounded-full bg-ink hover:bg-brand-coral text-canvas hover:text-white text-[11px] font-semibold transition-all shadow-xs cursor-pointer"
           >
             Accept All
           </button>
