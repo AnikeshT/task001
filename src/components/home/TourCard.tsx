@@ -43,6 +43,8 @@ export const TourCard: React.FC<TourCardProps> = ({
       {/* Media Header with Image Carousel / Featured Photo */}
       <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900 cursor-pointer" onClick={() => onOpenDetail(tour)}>
         <div
+          role="img"
+          aria-label={`Panoramic photo of ${tour.name} in ${tour.destination}, Italy`}
           className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
           style={{ backgroundImage: `url('${tour.heroImage}')` }}
         />

@@ -17,19 +17,19 @@ export const WhyTourpublish: React.FC = () => {
       icon: <DollarSign className="w-6 h-6 text-brand-emerald" />,
       title: 'Zero Middleman Markups',
       description:
-        'Traditional OTAs inflate tour prices by 25–35%. On Tourpublish, all bookings route directly to operators via KLNK at their true local price.',
+        'Traditional travel agencies inflate Italian tour prices by 25–35%. On Tourpublish, all bookings route directly to Italian operators via staging.klnk.tv at their authentic local rate.',
     },
     {
       icon: <Zap className="w-6 h-6 text-brand-coral" />,
-      title: 'Instant KLNK Digital Pass',
+      title: 'Instant staging.klnk.tv Digital Pass',
       description:
-        'Your itinerary, gate entry, and skipper details sync in 1 click to your Apple Wallet or Google Wallet with offline interactive maps.',
+        'Your Italian itinerary, marina gate entry, and skipper contacts sync in 1 click to your Apple Wallet or Google Wallet with offline interactive maps.',
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-sky-400" />,
-      title: 'Vetted Master Operators',
+      title: 'Vetted Italian Master Operators',
       description:
-        'Every operator undergoes strict on-the-ground verification: certified mountain guides (UIAGM), licensed boat skippers, and historic estate credentials.',
+        'Every Italian operator undergoes strict on-the-ground verification: UIAGM alpine guides in Cortina, licensed Riva boat skippers in Amalfi, and DOCG Brunello cellars in Tuscany.',
     },
     {
       icon: <HeartHandshake className="w-6 h-6 text-amber-400" />,

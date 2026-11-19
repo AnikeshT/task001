@@ -62,6 +62,8 @@ export const DestinationBento: React.FC<DestinationBentoProps> = ({ onSelectRegi
             >
               {/* Background Image */}
               <div
+                role="img"
+                aria-label={`Landscape view of ${item.name}, ${item.country}`}
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                 style={{ backgroundImage: `url('${item.imageUrl}')` }}
               />

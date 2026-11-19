@@ -34,15 +34,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 }) => {
   const regions: DestinationRegion[] = [
     'All',
-    'Greek Islands',
-    'Amalfi Coast',
-    'Catalonia',
-    'East Coast',
-    'Western Europe',
+    'Amalfi Coast & Capri',
     'Tuscany & Florence',
     'Dolomites & South Tyrol',
     'Sicily & Aeolian Islands',
-    'Global Expeditions',
+    'Lake Como & Northern Lakes',
+    'Venice & Venetian Lagoon',
+    'Italian Riviera & Portofino',
   ];
 
   const travelStyles: TravelStyle[] = [

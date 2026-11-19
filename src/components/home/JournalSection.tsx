@@ -48,6 +48,8 @@ export const JournalSection: React.FC = () => {
             <div>
               <div className="relative aspect-[16/10] overflow-hidden">
                 <div
+                  role="img"
+                  aria-label={`Editorial photo for article: ${article.title}`}
                   className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                   style={{ backgroundImage: `url('${article.heroImage}')` }}
                 />

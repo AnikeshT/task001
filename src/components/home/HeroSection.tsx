@@ -42,7 +42,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const styleRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -56,19 +55,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Ordered strictly according to user's reference screenshot:
-  // All, Greek Islands, Amalfi Coast, Catalonia, East Coast, Western Europe, then other master terroirs
   const regionsList: DestinationRegion[] = [
     'All',
-    'Greek Islands',
-    'Amalfi Coast',
-    'Catalonia',
-    'East Coast',
-    'Western Europe',
+    'Amalfi Coast & Capri',
     'Tuscany & Florence',
     'Dolomites & South Tyrol',
     'Sicily & Aeolian Islands',
-    'Global Expeditions',
+    'Lake Como & Northern Lakes',
+    'Venice & Venetian Lagoon',
+    'Italian Riviera & Portofino',
   ];
 
   const travelStylesList: TravelStyle[] = [
@@ -80,7 +75,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     'Yacht & Coastal',
   ];
 
-  const popularKeywords = ['Greek Catamaran', 'Amalfi Riva Yacht', 'Priorat Wine', 'Dolomites Via Ferrata', 'Socotra'];
+  const popularKeywords = [
+    'Amalfi Riva Yacht',
+    'Brunello di Montalcino',
+    'Dolomites Via Ferrata',
+    'Lake Como Bellagio',
+    'Stromboli Catamaran',
+  ];
 
   return (
     <section className="relative min-h-[92vh] flex items-center justify-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-brand-dark">
@@ -108,9 +109,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <span className="p-1 rounded-full bg-brand-coral text-white">
             <Sparkles className="w-3 h-3" />
           </span>
-          <span className="font-semibold text-white tracking-wide">2026 Curated Expedition Season</span>
+          <span className="font-semibold text-white tracking-wide">2026 Italian Expedition Season</span>
           <span className="text-slate-400">•</span>
-          <span className="text-brand-coral font-medium">Direct Booking via KLNK</span>
+          <span className="text-brand-coral font-medium">Direct Booking via staging.klnk.tv</span>
         </motion.div>
 
         {/* Main Editorial Headline */}
@@ -121,17 +122,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           className="space-y-4"
         >
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-sans font-black tracking-tight text-white leading-[1.08]">
-            Curated Luxury Expeditions{' '}
+            Curated Luxury Tours in Italy,{' '}
             <span className="font-serif italic font-normal text-brand-coral block sm:inline">
               crafted by local masters.
             </span>
           </h1>
           <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed">
-            Discover private yacht charters, century-old wine vaults, and alpine traverses. Every tour connects you directly to independent verified operators with instant mobile wallet passes.
+            Discover private Riva yachts in Amalfi, centenarian Brunello vaults in Tuscany, and high-altitude Dolomites traverses. Every tour connects you directly to verified Italian operators with instant mobile wallet passes.
           </p>
         </motion.div>
 
-        {/* Floating Discovery Search Dock with Exact Dropdown Matching Screenshot */}
+        {/* Floating Discovery Search Dock (CTA Above The Fold) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -146,12 +147,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={e => onSearchChange(e.target.value)}
-                placeholder="Where or what would you like to experience? (e.g. Amalfi, Greek Catamaran, Priorat...)"
+                placeholder="Where in Italy would you like to experience? (e.g. Amalfi, Brunello, Lake Como...)"
                 className="w-full bg-transparent text-xs sm:text-sm text-white placeholder:text-slate-400 focus:outline-none"
+                aria-label="Search Italian tours"
               />
             </div>
 
-            {/* Custom Region Dropdown (Exact Match to User Screenshot) */}
+            {/* Region Dropdown */}
             <div className="relative w-full sm:w-auto shrink-0" ref={dropdownRef}>
               <button
                 type="button"
@@ -160,6 +162,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   setStyleDropdownOpen(false);
                 }}
                 className="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-2.5 px-4 py-2 rounded-xl sm:rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs sm:text-sm font-semibold transition-all select-none cursor-pointer"
+                aria-label="Select Italian region"
               >
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-slate-400" />
@@ -168,7 +171,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${regionDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {/* Popover Dropdown (Matches Screenshot: Dark Card, Rounded, White Checkmark) */}
               <AnimatePresence>
                 {regionDropdownOpen && (
                   <motion.div
@@ -176,7 +178,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.96 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 w-56 rounded-2xl bg-[#1c1c1f] border border-white/15 shadow-2xl p-2 z-50 text-left space-y-0.5 max-h-72 overflow-y-auto"
+                    className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 w-60 rounded-2xl bg-[#1c1c1f] border border-white/15 shadow-2xl p-2 z-50 text-left space-y-0.5 max-h-72 overflow-y-auto"
                   >
                     {regionsList.map(region => {
                       const isSelected = selectedRegion === region;
@@ -213,6 +215,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   setRegionDropdownOpen(false);
                 }}
                 className="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-2.5 px-4 py-2 rounded-xl sm:rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs sm:text-sm font-semibold transition-all select-none cursor-pointer"
+                aria-label="Select Italian travel style"
               >
                 <div className="flex items-center gap-2">
                   <Compass className="w-4 h-4 text-slate-400" />
@@ -256,13 +259,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </AnimatePresence>
             </div>
 
-            {/* Action Button */}
+            {/* CTA Above The Fold Button */}
             <button
               type="button"
               onClick={onScrollToTours}
               className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-brand-coral hover:bg-brand-coral-hover text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 shrink-0 active:scale-95 cursor-pointer"
             >
-              <span>Explore ({totalToursCount})</span>
+              <span>Explore Italy ({totalToursCount})</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -271,7 +274,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400">
             <span className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
               <TrendingUp className="w-3.5 h-3.5 text-brand-coral" />
-              Trending:
+              Popular in Italy:
             </span>
             {popularKeywords.map(keyword => (
               <button
@@ -280,7 +283,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   onSearchChange(keyword);
                   onScrollToTours();
                 }}
-                className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:border-brand-coral/40 transition-all text-xs"
+                className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:border-brand-coral/40 transition-all text-xs cursor-pointer"
               >
                 {keyword}
               </button>
@@ -308,7 +311,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <ShieldCheck className="w-4 h-4 text-brand-emerald" />
               <span>100% Verified</span>
             </div>
-            <span className="text-xs text-slate-400">Master Local Operators</span>
+            <span className="text-xs text-slate-400">Italian Master Operators</span>
           </div>
 
           <div className="flex flex-col items-center">
@@ -321,8 +324,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           <div className="flex flex-col items-center">
             <div className="flex items-center gap-1 text-white font-bold text-lg">
-              <span className="font-mono text-brand-emerald">KLNK</span>
-              <span>1-Click Pass</span>
+              <span className="font-mono text-brand-emerald">staging.klnk.tv</span>
+              <span>1-Click</span>
             </div>
             <span className="text-xs text-slate-400">Instant Digital Wallet Pass</span>
           </div>

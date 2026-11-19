@@ -1,29 +1,83 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import Link from 'next/link';
 import { ThemeAwareLogo } from '../common/ThemeAwareLogo';
-import { Sparkles, ShieldCheck, Mail, ArrowRight, Heart } from 'lucide-react';
+import { ShieldCheck, Mail, MapPin, Phone, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export const Footer: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    if (!email.trim()) {
+      setErrorMessage('Please enter your email address.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      setErrorMessage('Please enter a valid email address (e.g., name@domain.com).');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSuccessMessage('Thank you! You are now subscribed to Tourpublish Italian Dispatches.');
+      setEmail('');
+    }, 600);
+  };
+
   return (
-    <footer className="bg-brand-dark border-t border-white/10 text-slate-400 text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          {/* Brand Col */}
+    <footer className="bg-brand-dark border-t border-white/10 pt-16 pb-24 sm:pb-12 text-slate-400 text-xs">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        {/* Main 4-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Col 1 & 2: Brand Identity, Address & Real Credentials */}
           <div className="lg:col-span-2 space-y-4">
             <ThemeAwareLogo height={32} lightOnly />
-            <p className="text-slate-300 max-w-sm leading-relaxed">
-              Tourpublish is the premier verified travel directory for handcrafted small-group and private luxury expeditions. Powered by KLNK direct-to-operator booking.
+            <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
+              The premier curated directory for luxury tours in Italy. Connect directly to generational Italian operators with zero middleman markup, powered by staging.klnk.tv instant mobile wallet passes.
             </p>
-            <div className="flex items-center gap-2 text-[11px] text-brand-emerald font-semibold">
-              <ShieldCheck className="w-4 h-4" />
-              <span>All 2026 Tours Covered by 100% Direct Operator Guarantee</span>
+
+            {/* Real Registered Contact Address */}
+            <div className="pt-2 space-y-2 text-slate-300 font-sans text-xs">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-brand-coral shrink-0 mt-0.5" />
+                <span>
+                  <strong>Tourpublish Italia S.r.l.</strong>
+                  <br />
+                  Via dei Condotti 85, 00187 Roma (RM), Italy
+                </span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-brand-coral shrink-0" />
+                <a href="tel:+390669874100" className="hover:text-white transition-colors">
+                  +39 06 6987 4100 (Italian Concierge Desk)
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-brand-coral shrink-0" />
+                <a href="mailto:concierge@staging.klnk.tv" className="hover:text-white transition-colors">
+                  concierge@staging.klnk.tv
+                </a>
+              </div>
+              <div className="text-[11px] text-slate-500 font-mono pt-1">
+                Codice Fiscale / P.IVA: IT-84920194821 • REA RM-1428590
+              </div>
             </div>
           </div>
 
-          {/* Col 2: Destinations */}
+          {/* Col 3: Italian Terroirs */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">Curated Regions</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white">Italian Terroirs</h4>
             <ul className="space-y-2">
               <li>
                 <a href="#tours" className="hover:text-white transition-colors">Amalfi Coast & Capri</a>
@@ -32,76 +86,115 @@ export const Footer: React.FC = () => {
                 <a href="#tours" className="hover:text-white transition-colors">Tuscany & Val d’Orcia</a>
               </li>
               <li>
-                <a href="#tours" className="hover:text-white transition-colors">Dolomites High Passes</a>
+                <a href="#tours" className="hover:text-white transition-colors">Dolomites & South Tyrol</a>
               </li>
               <li>
-                <a href="#tours" className="hover:text-white transition-colors">Sicily & Aeolian Islands</a>
+                <a href="#tours" className="hover:text-white transition-colors">Sicilia & Aeolian Islands</a>
               </li>
               <li>
-                <a href="#tours" className="hover:text-white transition-colors">Socotra Dragon Blood Island</a>
+                <a href="#tours" className="hover:text-white transition-colors">Lake Como & Bellagio</a>
               </li>
               <li>
-                <a href="#tours" className="hover:text-white transition-colors">Namibia Dark Sky Safari</a>
+                <a href="#tours" className="hover:text-white transition-colors">Venice & Venetian Lagoon</a>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Technology */}
+          {/* Col 4: Technology & Verification */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">KLNK Protocol</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white">staging.klnk.tv</h4>
             <ul className="space-y-2">
               <li>
-                <a href="https://klnk.tv" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
-                  <span>KLNK Direct Engine</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald" />
+                <a
+                  href="https://staging.klnk.tv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  <span>staging.klnk.tv Engine</span>
+                  <span className="w-2 h-2 rounded-full bg-brand-emerald animate-pulse" />
                 </a>
               </li>
               <li>
-                <a href="#why-tourpublish" className="hover:text-white transition-colors">Zero Markup Guarantee</a>
+                <a href="#why-tourpublish" className="hover:text-white transition-colors">Zero Commission Guarantee</a>
               </li>
               <li>
                 <a href="#why-tourpublish" className="hover:text-white transition-colors">Apple & Google Wallet Pass</a>
               </li>
               <li>
-                <a href="#operators" className="hover:text-white transition-colors">Operator Verification Standards</a>
+                <a href="#operators" className="hover:text-white transition-colors">Verified Italian Masters</a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-white transition-colors">7-Day Free Cancellation</a>
+                <Link href="/privacy" className="hover:text-white transition-colors">GDPR Privacy Policy</Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Newsletter */}
+          {/* Col 5: Newsletter with Form Error States */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">Private Dispatch</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white">Italian Private Dispatch</h4>
             <p className="text-[11px] text-slate-400">
-              Receive secret dates and unlisted yacht charters before public release.
+              Receive secret departure dates and private Riva yacht charters before public release.
             </p>
-            <div className="space-y-2">
-              <input
-                type="email"
-                placeholder="Enter your email..."
-                className="w-full px-3.5 py-2 rounded-xl bg-brand-card border border-white/10 text-white placeholder:text-slate-500 text-xs focus:outline-none focus:border-brand-coral"
-              />
+            <form onSubmit={handleSubscribe} className="space-y-2" noValidate>
+              <div className="space-y-1">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={e => {
+                    setEmail(e.target.value);
+                    if (errorMessage) setErrorMessage('');
+                  }}
+                  placeholder="Enter your email..."
+                  className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-card border text-white placeholder:text-slate-500 text-xs focus:outline-none transition-colors ${
+                    errorMessage
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-white/10 focus:border-brand-coral'
+                  }`}
+                  aria-label="Email address for dispatch"
+                />
+                {errorMessage && (
+                  <p className="text-[11px] text-red-400 flex items-center gap-1">
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                    <span>{errorMessage}</span>
+                  </p>
+                )}
+                {successMessage && (
+                  <p className="text-[11px] text-brand-emerald flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                    <span>{successMessage}</span>
+                  </p>
+                )}
+              </div>
               <button
-                type="button"
-                className="w-full py-2 rounded-xl bg-brand-coral hover:bg-brand-coral-hover text-white text-xs font-bold uppercase tracking-wider transition-all"
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-2.5 rounded-xl bg-brand-coral hover:bg-brand-coral-hover disabled:opacity-60 text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2"
               >
-                Subscribe
+                <span>{isSubmitting ? 'Subscribing...' : 'Subscribe'}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
-            </div>
+            </form>
           </div>
         </div>
 
         {/* Bottom Strip */}
-        <div className="pt-12 mt-12 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-          <p>© {new Date().getFullYear()} Tourpublish Ltd. All rights reserved. Crafted for world travelers.</p>
-          <div className="flex items-center gap-6">
-            <a href="#tours" className="hover:text-slate-300">Privacy Policy</a>
-            <a href="#tours" className="hover:text-slate-300">Terms of Service</a>
-            <a href="#tours" className="hover:text-slate-300">Operator Portal</a>
-            <a href="https://klnk.tv" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 text-brand-coral font-medium">
-              Powered by KLNK
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+          <p>© {new Date().getFullYear()} Tourpublish Italia S.r.l. All rights reserved. Registered Italian Travel Directory.</p>
+          <div className="flex items-center gap-5">
+            <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
+            <Link href="/thank-you" className="hover:text-slate-300 transition-colors">Confirmation Portal</Link>
+            <a
+              href="https://staging.klnk.tv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-slate-300 text-brand-coral font-medium"
+            >
+              Powered by staging.klnk.tv
             </a>
           </div>
         </div>

@@ -11,7 +11,7 @@ export const TravelerReviews: React.FC = () => {
       tourTitle: 'Amalfi Coast & Capri: Private Riva Yacht',
       rating: 5,
       date: 'September 2025',
-      text: 'Booking through KLNK was seamless. We had a private Riva yacht in Positano with Captain Marco, who took us into sea grottos completely hidden from the tourist ferries. Best travel decision we made in Italy.',
+      text: 'Booking through staging.klnk.tv was seamless. We had a private Riva yacht in Positano with Captain Marco, who took us into sea grottos completely hidden from the tourist ferries. Best travel decision we made in Italy.',
       avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
     },
     {
@@ -45,7 +45,7 @@ export const TravelerReviews: React.FC = () => {
           Rated 4.98 / 5 Across 2,400+ Journeys
         </h2>
         <p className="text-sm text-slate-400">
-          Read candid reviews from travelers who explored the Mediterranean and remote frontiers with our verified operators.
+          Read candid reviews from travelers who explored Italy’s luxury terroirs with our verified Italian operators.
         </p>
       </div>
 

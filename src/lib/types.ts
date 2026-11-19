@@ -2,16 +2,14 @@ export type Currency = 'USD' | 'EUR' | 'GBP';
 
 export type DestinationRegion =
   | 'All'
-  | 'Greek Islands'
   | 'Amalfi Coast'
   | 'Amalfi Coast & Capri'
-  | 'Catalonia'
-  | 'East Coast'
-  | 'Western Europe'
   | 'Tuscany & Florence'
   | 'Dolomites & South Tyrol'
   | 'Sicily & Aeolian Islands'
-  | 'Global Expeditions';
+  | 'Lake Como & Northern Lakes'
+  | 'Venice & Venetian Lagoon'
+  | 'Italian Riviera & Portofino';
 
 export type TravelStyle =
   | 'All'

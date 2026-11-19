@@ -16,6 +16,7 @@ import { WhyTourpublish } from '../components/home/WhyTourpublish';
 import { TravelerReviews } from '../components/home/TravelerReviews';
 import { FaqSection } from '../components/home/FaqSection';
 import { Footer } from '../components/layout/Footer';
+import { StickyMobileCta } from '../components/common/StickyMobileCta';
 import { MASTER_TOURS } from '../data/toursData';
 import {
   TourItem,
@@ -72,11 +73,6 @@ export default function HomePage() {
             tour.region !== 'Amalfi Coast & Capri' &&
             !tour.destination.toLowerCase().includes('amalfi')
           ) {
-            return false;
-          }
-        } else if (filters.region === 'Western Europe') {
-          const europeanCountries = ['Italy', 'Greece', 'Spain', 'France', 'Switzerland'];
-          if (!europeanCountries.includes(tour.country)) {
             return false;
           }
         } else if (tour.region !== filters.region) {
@@ -266,6 +262,9 @@ export default function HomePage() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating Sticky Mobile CTA */}
+      <StickyMobileCta onScrollToTours={scrollToTours} />
 
       {/* Interactive Tour Detail Modal */}
       <TourDetailModal

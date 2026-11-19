@@ -382,7 +382,7 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
               onClick={() => onBookKlnk(tour)}
               className="px-6 py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider bg-brand-coral hover:bg-brand-coral-hover text-white transition-all shadow-xl flex items-center gap-2 active:scale-95 cursor-pointer"
             >
-              <span>Book via KLNK</span>
+              <span>Book via staging.klnk.tv</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

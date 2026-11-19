@@ -57,14 +57,14 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
       badge: 'Alpine Adventure',
     },
     {
-      id: 'global',
-      title: 'Rare Wilderness & Stargazing',
-      region: 'Global Expeditions',
-      subtitle: 'Socotra Dragon Blood forests & Namibia Dark Sky conservation safaris',
+      id: 'como',
+      title: 'Lake Como & Northern Lakes',
+      region: 'Lake Como & Northern Lakes',
+      subtitle: 'Vintage Riva mahogany launches, Villa Balbianello & lakeside tranquility',
       count: '3 Expeditions',
-      image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80',
       icon: <Sparkles className="w-5 h-5 text-amber-400" />,
-      badge: 'Uncharted Frontiers',
+      badge: 'Lakeside Aristocracy',
     },
   ];
 

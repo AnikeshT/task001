@@ -101,17 +101,17 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* KLNK Live Status Pill */}
           <a
-            href="https://klnk.tv"
+            href="https://staging.klnk.tv"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-brand-emerald/30 bg-brand-emerald/10 text-brand-emerald hover:bg-brand-emerald/20 transition-all"
-            title="All tours powered by verified KLNK instant direct checkout"
+            title="All tours powered by verified staging.klnk.tv instant direct checkout"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-emerald"></span>
             </span>
-            <span className="font-mono text-[11px] font-semibold">KLNK Engine Live</span>
+            <span className="font-mono text-[11px] font-semibold">staging.klnk.tv Live</span>
           </a>
 
           {/* Primary CTA */}

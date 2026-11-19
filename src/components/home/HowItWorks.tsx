@@ -8,20 +8,20 @@ export const HowItWorks: React.FC = () => {
   const steps = [
     {
       step: '01',
-      title: 'Explore Handcrafted Terroirs',
+      title: 'Explore Italian Terroirs',
       subtitle: 'Verified local masters, zero generic aggregators',
       description:
-        'Browse intimate private charters, private cellar masterclasses, and certified mountain traverses. Every tour is vetted for historical authenticity, safety, and exclusivity.',
-      badge: 'Curation',
+        'Browse intimate private Riva charters, private Brunello cellar masterclasses, and certified Dolomites traverses. Every tour is vetted for historical authenticity, safety, and exclusivity.',
+      badge: 'Italian Curation',
       icon: Search,
     },
     {
       step: '02',
-      title: 'Direct Operator Checkout via KLNK',
+      title: 'Direct Operator Checkout via staging.klnk.tv',
       subtitle: 'Zero commission markups, 100% transparent pricing',
       description:
-        'When you select an expedition, you checkout directly with the verified local operator powered by KLNK’s secure payment infrastructure. No middleman agencies or surprise fees.',
-      badge: 'KLNK Engine',
+        'When you select an Italian expedition, you checkout directly with the verified local operator powered by staging.klnk.tv secure payment infrastructure. No middleman agencies or surprise fees.',
+      badge: 'staging.klnk.tv Engine',
       icon: ShieldCheck,
     },
     {
@@ -29,7 +29,7 @@ export const HowItWorks: React.FC = () => {
       title: 'Instant Apple & Google Wallet Pass',
       subtitle: 'Live itinerary, GPS meeting points, offline entry',
       description:
-        'Instantly receive your cryptographic digital boarding pass with embedded harbor gate access, emergency satellite contacts, and live updates directly on your smartphone.',
+        'Instantly receive your cryptographic digital boarding pass with embedded marina gate access, emergency concierge contacts, and live updates directly on your smartphone.',
       badge: 'Digital Pass',
       icon: Smartphone,
     },

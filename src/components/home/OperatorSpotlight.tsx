@@ -45,6 +45,8 @@ export const OperatorSpotlight: React.FC<OperatorSpotlightProps> = ({
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <div
+                  role="img"
+                  aria-label={`Portrait of Italian master operator ${op.name}`}
                   className="w-16 h-16 rounded-2xl bg-cover bg-center border border-white/20 shrink-0 shadow-md"
                   style={{ backgroundImage: `url('${op.avatarUrl}')` }}
                 />

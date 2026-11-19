@@ -124,7 +124,7 @@ export const KlnkBookingModal: React.FC<KlnkBookingModalProps> = ({
                   rel="noopener noreferrer"
                   className="w-full py-3 rounded-full bg-brand-coral hover:bg-brand-coral-hover text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
-                  <span>Open Live Page on KLNK.tv</span>
+                  <span>Open Live Page on staging.klnk.tv</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
                 <button
@@ -253,7 +253,7 @@ export const KlnkBookingModal: React.FC<KlnkBookingModalProps> = ({
                   rel="noopener noreferrer"
                   className="w-full py-2 text-center text-xs text-slate-400 hover:text-white flex items-center justify-center gap-1 transition-colors"
                 >
-                  <span>Or view live listing on klnk.tv</span>
+                  <span>Or view live listing on staging.klnk.tv</span>
                   <ExternalLink className="w-3 h-3 text-brand-coral" />
                 </a>
               </div>
