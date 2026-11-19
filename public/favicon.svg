@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- White Background rounded for clean contrast on any tab bar -->
+  <rect width="200" height="200" rx="44" fill="#FFFFFF"/>
+  
+  <!-- Left: Red Location Pin with Cutout -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M78 40C52.5949 40 32 60.5949 32 86C32 109.847 64.708 147.167 74.053 157.502C76.136 159.805 79.864 159.805 81.947 157.502C91.292 147.167 124 109.847 124 86C124 60.5949 103.405 40 78 40ZM78 66C66.9543 66 58 74.9543 58 86C58 97.0457 66.9543 106 78 106C89.0457 106 98 97.0457 98 86C98 74.9543 89.0457 66 78 66Z" fill="#FD3D4B"/>
+  
+  <!-- Right: Dark Navy/Black P-Arrow Loop -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M128 40C152.3 40 172 59.7 172 84C172 105.8 156.1 123.9 135.2 127.4L135.2 152C135.2 156.4 131.6 160 127.2 160L108 160C103.6 160 100 156.4 100 152L100 125C100 111.7 110.7 101 124 101L140 101L130 91L143 78L170 105L143 132L130 119L135.2 113.8C147.2 110.8 156 100 156 87C156 71.5 143.5 59 128 59L114 59L114 40L128 40Z" fill="#0D0F18"/>
+</svg>

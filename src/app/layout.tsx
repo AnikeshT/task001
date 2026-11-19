@@ -27,8 +27,13 @@ export const metadata: Metadata = {
   creator: 'Tourpublish',
   publisher: 'Tourpublish Italia S.r.l.',
   icons: {
-    icon: '/icon.svg',
-    apple: '/icon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/logo.jpg', type: 'image/jpeg' },
+    ],
+    apple: [
+      { url: '/logo.jpg', sizes: '180x180', type: 'image/jpeg' },
+    ],
   },
   openGraph: {
     title: 'Tourpublish — Curated Luxury Tours in Italy',
@@ -36,6 +41,14 @@ export const metadata: Metadata = {
       'Handcrafted luxury tours in Italy booked direct from verified master operators via staging.klnk.tv.',
     url: 'https://tourpublish.com',
     siteName: 'Tourpublish',
+    images: [
+      {
+        url: '/og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Tourpublish - Curated Luxury Tours in Italy',
+      },
+    ],
     locale: 'en_IT',
     type: 'website',
   },
@@ -44,6 +57,7 @@ export const metadata: Metadata = {
     title: 'Tourpublish — Curated Luxury Tours in Italy',
     description: 'Book verified private luxury tours in Italy direct via staging.klnk.tv.',
     creator: '@tourpublish',
+    images: ['/og.jpg'],
   },
   robots: {
     index: true,
