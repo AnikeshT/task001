@@ -50,6 +50,7 @@ export interface TourOperator {
 
 export interface TourItem {
   id: string;
+  slug?: string;
   klnkSlug: string;
   klnkUrl: string;
   name: string;

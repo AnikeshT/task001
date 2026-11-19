@@ -9,12 +9,12 @@ interface StickyMobileCtaProps {
 
 export const StickyMobileCta: React.FC<StickyMobileCtaProps> = ({ onScrollToTours }) => {
   return (
-    <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0e1013]/95 backdrop-blur-md border-t border-brand-border px-4 py-3 flex items-center justify-between shadow-dropdown">
+    <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-canvas/95 backdrop-blur-md border-t border-canvas-border px-4 py-3 flex items-center justify-between shadow-lg">
       <div className="flex flex-col">
         <span className="text-[10px] font-mono uppercase tracking-wider text-brand-coral font-bold">
           Luxury Italy Tours
         </span>
-        <span className="text-xs text-brand-primary font-medium">
+        <span className="text-xs text-ink font-semibold">
           Direct on staging.klnk.tv
         </span>
       </div>
@@ -22,10 +22,10 @@ export const StickyMobileCta: React.FC<StickyMobileCtaProps> = ({ onScrollToTour
       <button
         type="button"
         onClick={onScrollToTours}
-        className="px-4 py-2 rounded-lg bg-brand-coral hover:bg-brand-coral-hover text-white text-xs font-semibold uppercase tracking-wider shadow-sm flex items-center gap-1.5 transition-colors cursor-pointer"
+        className="btn-coral py-2 px-4 text-xs font-semibold cursor-pointer shadow-sm"
       >
-        <span>Explore Tours</span>
-        <ArrowRight className="w-3.5 h-3.5" />
+        <span>Explore Trips</span>
+        <ArrowRight className="w-3.5 h-3.5 ml-1" />
       </button>
     </div>
   );

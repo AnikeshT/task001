@@ -1,60 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    color-scheme: dark;
+    --background: #f5efe4;
+    --foreground: #211d16;
+    color-scheme: light;
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: #0e1013;
-    color: #f4f4f6;
+    background-color: #f5efe4;
+    color: #211d16;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: #0e1013;
-    color: #f4f4f6;
+    background-color: #f5efe4;
+    color: #211d16;
     overflow-x: hidden;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
-  /* Accessible focus indicators */
+  h1, h2, h3, .font-display {
+    font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
   :focus-visible {
-    outline: 2px solid #fd3d4b;
+    outline: 2px solid #211d16;
     outline-offset: 2px;
   }
 }
 
-/* Slim native-like scrollbars */
+.container-custom {
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-inline: 2rem;
+  }
+}
+
+/* Wayfare Button Styles */
+.btn-dark {
+  padding-inline: 1.5rem;
+  padding-block: 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #f5efe4;
+  background-color: #211d16;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(33, 29, 22, 0.12);
+}
+
+.btn-dark:hover {
+  background-color: #14120e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(33, 29, 22, 0.18);
+}
+
+.btn-coral {
+  padding-inline: 1.5rem;
+  padding-block: 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #fd3d4b;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(253, 61, 75, 0.25);
+}
+
+.btn-coral:hover {
+  background-color: #e42e3c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(253, 61, 75, 0.35);
+}
+
+.btn-outline {
+  padding-inline: 1.5rem;
+  padding-block: 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #211d16;
+  background-color: transparent;
+  border: 1px solid #211d16;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: #211d16;
+  color: #f5efe4;
+}
+
+/* Subtle Card Hover Effect */
+.wayfare-card {
+  background-color: #fcf9f3;
+  border: 1px solid #e0d6c4;
+  border-radius: 1.5rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wayfare-card:hover {
+  border-color: #bcb4a3;
+  box-shadow: 0 12px 32px rgba(33, 29, 22, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Pill Filter Styles */
+.pill-tab {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.pill-tab-active {
+  background-color: #211d16;
+  color: #f5efe4;
+}
+
+.pill-tab-inactive {
+  background-color: #fcf9f3;
+  border-color: #e0d6c4;
+  color: #4e493f;
+}
+
+.pill-tab-inactive:hover {
+  border-color: #211d16;
+  color: #211d16;
+}
+
+/* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0e1013;
+  background: #ece3d3;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #252830;
+  background: #c4bdaf;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #363b47;
-}
-
-/* Hide scrollbars for overflow carousels */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  background: #857e70;
 }

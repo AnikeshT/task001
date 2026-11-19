@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ThemeAwareLogo } from '../../components/common/ThemeAwareLogo';
-import { ShieldCheck, Lock, Mail, MapPin } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export const metadata = {
   title: 'Privacy Policy & GDPR Compliance | Tourpublish Italy',
@@ -10,13 +10,13 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-[#0e1013] text-brand-primary flex flex-col justify-between font-sans selection:bg-brand-coral selection:text-white">
-      <header className="border-b border-brand-border py-4 px-6 bg-[#0e1013]/90 backdrop-blur-md sticky top-0 z-20">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <ThemeAwareLogo height={28} lightOnly />
+    <div className="min-h-screen bg-canvas text-ink flex flex-col justify-between font-sans selection:bg-brand-coral selection:text-white">
+      <header className="border-b border-canvas-border py-4 px-6 bg-canvas">
+        <div className="container-custom flex items-center justify-between">
+          <ThemeAwareLogo height={28} />
           <Link
             href="/"
-            className="text-xs font-semibold text-brand-secondary hover:text-white transition-colors"
+            className="text-xs font-semibold text-ink-muted hover:text-ink transition-colors"
           >
             ← Back to Directory
           </Link>
@@ -25,77 +25,70 @@ export default function PrivacyPage() {
 
       <main className="flex-1 py-14 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-10">
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-brand-coral/10 border border-brand-coral/20 text-brand-coral text-xs font-medium">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas-card border border-canvas-border text-brand-coral text-xs font-bold uppercase tracking-wider">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>EU GDPR & Italian Data Protection Compliance</span>
+            <span>EU GDPR &amp; Italian Data Protection Compliance</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
-            Privacy Policy & Data Security
+          <h1 className="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">
+            Privacy Policy &amp; Data Security
           </h1>
-          <p className="text-xs text-brand-muted font-mono">
+          <p className="text-xs text-ink-muted font-mono">
             Last Updated: November 2026 • Tourpublish Italia S.r.l. (Via dei Condotti 85, Roma)
           </p>
         </div>
 
-        <div className="prose prose-invert max-w-none text-brand-secondary text-sm leading-relaxed space-y-8">
+        <div className="space-y-8 text-sm text-ink-soft leading-relaxed">
           <section className="space-y-3">
-            <h2 className="text-lg font-semibold text-white">1. Data Controller Information</h2>
+            <h2 className="text-xl font-display font-bold text-ink">1. Data Controller Information</h2>
             <p>
-              Tourpublish Italia S.r.l. (&quot;Tourpublish&quot;, &quot;we&quot;, &quot;us&quot;) operates the luxury travel directory service located at tourpublish.com. Under Regulation (EU) 2016/679 (General Data Protection Regulation - GDPR) and the Italian Privacy Code (Legislative Decree no. 196/2003, amended by Legislative Decree no. 101/2018), the Data Controller is:
+              Tourpublish Italia S.r.l. (&quot;Tourpublish&quot;, &quot;we&quot;, &quot;us&quot;) operates the luxury travel directory service located at tourpublish.com. Under Regulation (EU) 2016/679 (General Data Protection Regulation - GDPR) and the Italian Privacy Code, the Data Controller is:
             </p>
-            <div className="rounded-xl bg-[#14161b] border border-brand-border p-4 font-mono text-xs text-brand-secondary space-y-1">
-              <p className="text-white font-bold">Tourpublish Italia S.r.l.</p>
+            <div className="p-5 rounded-2xl bg-white border border-canvas-border font-mono text-xs text-ink space-y-1">
+              <p className="font-bold">Tourpublish Italia S.r.l.</p>
               <p>Registered Address: Via dei Condotti 85, 00187 Roma (RM), Italy</p>
               <p>Codice Fiscale / P.IVA: IT-84920194821</p>
-              <p>Data Protection Officer (DPO): privacy@tourpublish.com / concierge@staging.klnk.tv</p>
+              <p>Data Protection Officer: privacy@tourpublish.com / concierge@staging.klnk.tv</p>
             </div>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-semibold text-white">2. Direct Operator Booking via staging.klnk.tv</h2>
+            <h2 className="text-xl font-display font-bold text-ink">2. Direct Operator Booking via staging.klnk.tv</h2>
             <p>
-              Tourpublish serves as an independent curated directory of verified Italian luxury tour operators. When you initiate a booking, you are seamlessly transferred to <strong className="text-white">staging.klnk.tv</strong>, an authorized, PCI-DSS Level 1 compliant direct booking checkout engine.
+              Tourpublish serves as an independent curated directory of verified Italian luxury tour operators. When you initiate a booking, you are seamlessly transferred to <strong>staging.klnk.tv</strong>, an authorized, PCI-DSS Level 1 compliant direct booking checkout engine.
             </p>
             <p>
-              Tourpublish does not store your credit card details, CVV codes, or full banking payment credentials on our servers. All transaction processing, Apple Pay/Google Pay tokens, and cryptographic mobile boarding passes are handled in accordance with strict cryptographic standards managed by staging.klnk.tv and its banking partners.
+              Tourpublish does not store your credit card details, CVV codes, or banking credentials. All transaction processing and mobile boarding passes are handled cryptographically by staging.klnk.tv.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-semibold text-white">3. Information We Collect</h2>
-            <ul className="list-disc pl-5 space-y-2 text-brand-secondary">
-              <li><strong className="text-white">Contact Information:</strong> Email address when you subscribe to our Italian Private Dispatch newsletter or submit an itinerary concierge request.</li>
-              <li><strong className="text-white">Technical &amp; Usage Data:</strong> Anonymized IP address, browser type, device information, and interactions on our directory used exclusively to optimize performance across mobile and desktop devices.</li>
-              <li><strong className="text-white">Operator Communication:</strong> Notes and preferences submitted to local Italian operators regarding dietary needs, yacht boarding arrangements, or alpine guide sizes.</li>
+            <h2 className="text-xl font-display font-bold text-ink">3. Information We Collect</h2>
+            <ul className="list-disc pl-5 space-y-2">
+              <li><strong>Contact Information:</strong> Email address when you submit an itinerary concierge inquiry.</li>
+              <li><strong>Technical Data:</strong> Anonymized interaction metrics used exclusively to optimize performance.</li>
+              <li><strong>Operator Communication:</strong> Notes submitted to local Italian operators regarding yacht boarding or dietary needs.</li>
             </ul>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-semibold text-white">4. Your GDPR Rights</h2>
+            <h2 className="text-xl font-display font-bold text-ink">4. Your GDPR Rights</h2>
             <p>
-              As a European or international data subject, you have the right to request access to your personal data, request rectification or erasure (&quot;right to be forgotten&quot;), restrict processing, or request data portability. To exercise these rights, contact our Data Protection Officer at <strong className="text-white">privacy@tourpublish.com</strong> or via registered post to our Rome conciergerie office.
-            </p>
-          </section>
-
-          <section className="space-y-3">
-            <h2 className="text-lg font-semibold text-white">5. Cookies &amp; Tracking Technologies</h2>
-            <p>
-              We use strictly necessary cookies to store your preferred currency (USD, EUR, GBP) and filter selections. Non-essential analytical cookies are only loaded after you provide affirmative consent via our Cookie Consent banner. You can update your preferences at any time.
+              Under GDPR, you have the right to access, rectify, or erase your personal data. Contact our Data Protection Officer at <strong>privacy@tourpublish.com</strong>.
             </p>
           </section>
         </div>
 
-        <div className="pt-6 border-t border-brand-border flex items-center justify-between text-xs text-brand-muted">
-          <Link href="/terms" className="hover:text-white transition-colors">
+        <div className="pt-6 border-t border-canvas-border flex items-center justify-between text-xs text-ink-muted">
+          <Link href="/terms" className="hover:text-ink transition-colors font-medium">
             Read Terms of Service →
           </Link>
-          <Link href="/" className="hover:text-white transition-colors">
+          <Link href="/" className="hover:text-ink transition-colors font-medium">
             Return to Luxury Italy Tours
           </Link>
         </div>
       </main>
 
-      <footer className="border-t border-brand-border py-6 text-center text-xs text-brand-muted">
+      <footer className="border-t border-canvas-border py-6 text-center text-xs text-ink-muted">
         <p>© {new Date().getFullYear()} Tourpublish Italia S.r.l. • Via dei Condotti 85, 00187 Roma RM, Italy • Powered by staging.klnk.tv</p>
       </footer>
     </div>

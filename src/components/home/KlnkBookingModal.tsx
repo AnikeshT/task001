@@ -3,12 +3,14 @@
 import React, { useState } from 'react';
 import {
   X,
+  Lock,
   ShieldCheck,
   CheckCircle2,
   Calendar,
   Users,
+  Smartphone,
   ExternalLink,
-  Lock,
+  ArrowRight,
 } from 'lucide-react';
 import { TourItem, Currency } from '../../lib/types';
 import { formatPrice } from '../../lib/utils';
@@ -27,11 +29,12 @@ export const KlnkBookingModal: React.FC<KlnkBookingModalProps> = ({
   onClose,
 }) => {
   const [guestsCount, setGuestsCount] = useState<number>(2);
-  const [selectedDate, setSelectedDate] = useState<string>(tour?.nextDeparture || 'May 14, 2026');
-  const [isSimulatingBooking, setIsSimulatingBooking] = useState<boolean>(false);
-  const [bookingSuccess, setBookingSuccess] = useState<boolean>(false);
+  const [isSimulatingBooking, setIsSimulatingBooking] = useState(false);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
 
   if (!isOpen || !tour) return null;
+
+  const liveTourUrl = 'https://staging.klnk.tv/pushpak/2de2d421/italy-trip';
 
   const pricePerGuest =
     currency === 'EUR' ? tour.priceEur : currency === 'GBP' ? tour.priceGbp : tour.priceUsd;
@@ -43,39 +46,39 @@ export const KlnkBookingModal: React.FC<KlnkBookingModalProps> = ({
     setTimeout(() => {
       setIsSimulatingBooking(false);
       setBookingSuccess(true);
-      if (tour?.klnkUrl && typeof window !== 'undefined') {
-        window.open(tour.klnkUrl, '_blank');
+      if (typeof window !== 'undefined') {
+        window.open(liveTourUrl, '_blank');
       }
     }, 600);
   };
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg bg-[#14161b] border border-brand-border-strong rounded-xl shadow-modal overflow-hidden flex flex-col"
+        className="relative w-full max-w-lg bg-canvas-card border border-canvas-border rounded-3xl shadow-2xl overflow-hidden flex flex-col"
         onClick={e => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="booking-modal-title"
       >
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-brand-border flex items-center justify-between bg-[#0e1013]">
+        <div className="p-5 border-b border-canvas-border flex items-center justify-between bg-canvas">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-brand-muted block font-semibold">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-ink-muted block font-bold">
               Direct Host Reservation
             </span>
-            <h3 id="booking-modal-title" className="text-sm font-bold text-brand-primary flex items-center gap-1.5">
+            <h3 id="booking-modal-title" className="text-sm font-display font-bold text-ink flex items-center gap-1.5">
               <span>staging.klnk.tv Protocol</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald" />
+              <span className="w-2 h-2 rounded-full bg-emerald-600" />
             </h3>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-brand-secondary hover:text-white hover:bg-brand-surface transition-colors cursor-pointer"
+            className="p-1.5 rounded-full text-ink hover:bg-canvas-card transition-colors cursor-pointer"
             aria-label="Close booking modal"
           >
             <X className="w-4 h-4" />
@@ -83,47 +86,41 @@ export const KlnkBookingModal: React.FC<KlnkBookingModalProps> = ({
         </div>
 
         {/* Modal Body */}
-        <div className="p-5 sm:p-6 space-y-4 overflow-y-auto max-h-[75vh] custom-scrollbar">
+        <div className="p-6 space-y-5">
           {bookingSuccess ? (
-            /* Booking Confirmed State */
-            <div className="py-4 text-center space-y-4">
-              <div className="w-12 h-12 rounded-full bg-brand-emerald/15 border border-brand-emerald/30 text-brand-emerald flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-6 h-6" />
+            <div className="text-center py-6 space-y-4">
+              <div className="w-14 h-14 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center mx-auto text-emerald-700 shadow-sm">
+                <CheckCircle2 className="w-7 h-7" />
               </div>
-              <div className="space-y-1">
-                <h4 className="text-lg font-bold text-brand-primary">Digital Pass Generated</h4>
-                <p className="text-xs text-brand-secondary max-w-xs mx-auto">
-                  Your reservation with <strong className="text-white">{tour.operator.name}</strong> has been transmitted. Your pass is ready for Apple Wallet &amp; Google Wallet.
-                </p>
-              </div>
+              <h4 className="text-xl font-display font-bold text-ink">
+                Booking Transmitted to Host!
+              </h4>
+              <p className="text-xs text-ink-soft leading-relaxed max-w-sm mx-auto">
+                Your direct reservation request has been transmitted securely via staging.klnk.tv. Your digital boarding pass has been created.
+              </p>
 
-              {/* Pass Card */}
-              <div className="p-4 rounded-lg bg-[#0e1013] border border-brand-border text-left space-y-2 text-xs">
-                <div className="flex justify-between items-center text-brand-muted">
-                  <span>Pass Token:</span>
-                  <span className="font-mono text-brand-emerald font-bold">KLNK-IT-2026-X892</span>
+              <div className="p-4 rounded-2xl bg-canvas border border-canvas-border text-left text-xs space-y-2">
+                <div className="flex justify-between items-center text-ink-muted">
+                  <span>Pass Identification Token:</span>
+                  <span className="font-mono font-bold text-ink">KLNK-IT-2026-9842X</span>
                 </div>
-                <div className="flex justify-between items-center text-brand-muted">
-                  <span>Expedition:</span>
-                  <span className="text-white font-medium truncate max-w-[200px]">{tour.name}</span>
+                <div className="flex justify-between items-center text-ink-muted">
+                  <span>Operator Host:</span>
+                  <span className="font-medium text-ink">{tour.operator.name}</span>
                 </div>
-                <div className="flex justify-between items-center text-brand-muted">
-                  <span>Date &amp; Guests:</span>
-                  <span className="text-white font-medium">{selectedDate} ({guestsCount} Guests)</span>
-                </div>
-                <div className="flex justify-between items-center text-brand-muted pt-2 border-t border-brand-border">
-                  <span>Total Amount Paid:</span>
-                  <span className="font-mono font-bold text-white">{formatPrice(totalPrice, currency)}</span>
+                <div className="flex justify-between items-center text-ink-muted pt-2 border-t border-canvas-border">
+                  <span>Total Amount:</span>
+                  <span className="font-mono font-bold text-ink">{formatPrice(totalPrice, currency)}</span>
                 </div>
               </div>
 
               {/* Real URL link */}
               <div className="pt-2 flex flex-col gap-2">
                 <a
-                  href={tour.klnkUrl}
+                  href={liveTourUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 rounded-lg bg-brand-coral hover:bg-brand-coral-hover text-white text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                  className="btn-coral w-full py-3 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <span>Open Live Page on staging.klnk.tv</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -134,112 +131,98 @@ export const KlnkBookingModal: React.FC<KlnkBookingModalProps> = ({
                     setBookingSuccess(false);
                     onClose();
                   }}
-                  className="w-full py-2 rounded-lg text-xs font-medium text-brand-secondary hover:text-white bg-brand-surface border border-brand-border cursor-pointer"
+                  className="w-full py-2.5 rounded-full text-xs font-semibold text-ink hover:bg-canvas transition-colors cursor-pointer"
                 >
-                  Return to Tourpublish Directory
+                  Return to Italian Catalogue
                 </button>
               </div>
             </div>
           ) : (
-            /* Checkout Form */
             <>
-              {/* Tour Overview Box */}
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0e1013] border border-brand-border">
+              {/* Tour Summary Card */}
+              <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-canvas border border-canvas-border">
                 <img
                   src={tour.heroImage}
                   alt={tour.name}
-                  className="w-14 h-14 rounded-md object-cover shrink-0 border border-brand-border"
+                  className="w-16 h-14 rounded-xl object-cover shrink-0"
                 />
-                <div className="overflow-hidden min-w-0">
-                  <span className="text-[10px] font-mono uppercase font-semibold text-brand-coral tracking-wider block">
-                    {tour.destination}
+                <div className="overflow-hidden">
+                  <h4 className="text-xs font-display font-bold text-ink truncate">{tour.name}</h4>
+                  <p className="text-[11px] text-ink-muted truncate">{tour.destination} • {tour.durationLabel}</p>
+                  <p className="text-[11px] font-semibold text-brand-coral">Operated by {tour.operator.name}</p>
+                </div>
+              </div>
+
+              {/* Guests Count Selector */}
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-ink flex items-center justify-between">
+                  <span className="flex items-center gap-1.5">
+                    <Users className="w-3.5 h-3.5 text-brand-coral" />
+                    <span>Number of Guests:</span>
                   </span>
-                  <h4 className="text-xs sm:text-sm font-bold text-brand-primary truncate">{tour.name}</h4>
-                  <p className="text-[11px] text-brand-muted truncate">Host: {tour.operator.name}</p>
-                </div>
-              </div>
-
-              {/* Reservation Parameters: Date & Guests */}
-              <div className="grid grid-cols-2 gap-3 text-xs">
-                {/* Date Picker */}
-                <div className="space-y-1">
-                  <label className="text-[10px] font-mono uppercase font-semibold text-brand-muted block tracking-wider flex items-center gap-1">
-                    <Calendar className="w-3 h-3 text-brand-muted" />
-                    <span>Departure Date</span>
-                  </label>
-                  <select
-                    value={selectedDate}
-                    onChange={e => setSelectedDate(e.target.value)}
-                    className="w-full p-2 rounded-lg bg-[#0e1013] border border-brand-border text-brand-primary focus:outline-none text-xs"
-                  >
-                    <option value={tour.nextDeparture}>{tour.nextDeparture} (Confirmed)</option>
-                    <option value="June 12, 2026">June 12, 2026</option>
-                    <option value="July 08, 2026">July 08, 2026</option>
-                    <option value="September 15, 2026">September 15, 2026</option>
-                  </select>
-                </div>
-
-                {/* Number of Guests */}
-                <div className="space-y-1">
-                  <label className="text-[10px] font-mono uppercase font-semibold text-brand-muted block tracking-wider flex items-center gap-1">
-                    <Users className="w-3 h-3 text-brand-muted" />
-                    <span>Number of Guests</span>
-                  </label>
-                  <div className="flex items-center rounded-lg bg-[#0e1013] border border-brand-border p-1 justify-between">
+                  <span className="text-xs font-mono font-bold text-ink">
+                    {guestsCount} {guestsCount === 1 ? 'Traveler' : 'Travelers'}
+                  </span>
+                </label>
+                <div className="flex items-center gap-2">
+                  {[1, 2, 4, 6, 8].map(num => (
                     <button
+                      key={num}
                       type="button"
-                      onClick={() => setGuestsCount(Math.max(1, guestsCount - 1))}
-                      className="w-7 h-6 rounded bg-brand-surface hover:bg-brand-surface-hover text-white font-bold text-xs flex items-center justify-center cursor-pointer"
+                      onClick={() => setGuestsCount(num)}
+                      className={`flex-1 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all cursor-pointer ${
+                        guestsCount === num
+                          ? 'bg-ink text-canvas shadow-xs'
+                          : 'bg-canvas border border-canvas-border text-ink-muted hover:text-ink'
+                      }`}
                     >
-                      -
+                      {num}
                     </button>
-                    <span className="font-mono font-bold text-white text-xs">{guestsCount}</span>
-                    <button
-                      type="button"
-                      onClick={() => setGuestsCount(Math.min(8, guestsCount + 1))}
-                      className="w-7 h-6 rounded bg-brand-surface hover:bg-brand-surface-hover text-white font-bold text-xs flex items-center justify-center cursor-pointer"
-                    >
-                      +
-                    </button>
-                  </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Price Calculation Breakdown */}
-              <div className="p-3.5 rounded-lg bg-[#0e1013] border border-brand-border space-y-1.5 text-xs">
-                <div className="flex justify-between text-brand-secondary">
-                  <span>{formatPrice(pricePerGuest, currency)} × {guestsCount} Guests</span>
-                  <span className="font-mono text-white font-medium">{formatPrice(totalPrice, currency)}</span>
+              {/* Direct Booking Breakdown */}
+              <div className="p-4 rounded-2xl bg-canvas border border-canvas-border space-y-2 text-xs">
+                <div className="flex justify-between items-center text-ink-muted">
+                  <span>Price per traveler:</span>
+                  <span className="font-mono text-ink">{formatPrice(pricePerGuest, currency)}</span>
                 </div>
-                <div className="flex justify-between text-brand-muted text-[11px]">
-                  <span>Italian taxes &amp; harbor permits</span>
-                  <span className="text-brand-emerald font-medium">Included</span>
+                <div className="flex justify-between items-center text-ink-muted">
+                  <span>Travelers:</span>
+                  <span className="font-mono text-ink">× {guestsCount}</span>
                 </div>
-                <div className="flex justify-between text-brand-muted text-[11px]">
-                  <span>staging.klnk.tv Direct Fee</span>
-                  <span className="text-brand-emerald font-medium">$0 (0% Markup)</span>
+                <div className="flex justify-between items-center text-emerald-700 font-semibold">
+                  <span>Agency Booking Commission:</span>
+                  <span className="font-mono">€0.00 (Zero markup)</span>
                 </div>
-                <div className="pt-2 border-t border-brand-border flex justify-between items-baseline text-xs font-bold text-white">
-                  <span>Total Due Host:</span>
-                  <span className="font-mono text-base text-brand-coral">{formatPrice(totalPrice, currency)}</span>
+                <div className="flex justify-between items-center text-ink font-bold pt-2 border-t border-canvas-border">
+                  <span>Total Direct Rate:</span>
+                  <span className="text-base font-display font-extrabold text-ink">
+                    {formatPrice(totalPrice, currency)}
+                  </span>
                 </div>
               </div>
 
-              {/* Operator Direct Guarantee */}
-              <div className="flex items-start gap-2 p-2.5 rounded-lg bg-brand-emerald/10 border border-brand-emerald/20 text-xs text-brand-emerald">
-                <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5" />
-                <span className="text-[11px] leading-relaxed">
-                  <strong>Direct Host Guarantee:</strong> Funds are paid directly to {tour.operator.name} with no intermediaries. 100% refundable up to 7 days prior.
-                </span>
+              {/* Guarantees */}
+              <div className="space-y-1.5 text-[11px] text-ink-soft">
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>7-Day Free Cancellation Standard (100% full refund)</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Smartphone className="w-3.5 h-3.5 text-brand-coral shrink-0" />
+                  <span>Instant Apple Wallet &amp; Google Wallet boarding pass</span>
+                </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="space-y-2 pt-1">
+              {/* Actions */}
+              <div className="pt-2 space-y-2.5">
                 <button
                   type="button"
                   onClick={handleSimulateCheckout}
                   disabled={isSimulatingBooking}
-                  className="w-full py-2.5 rounded-lg bg-brand-coral hover:bg-brand-coral-hover text-white text-xs sm:text-sm font-semibold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm transition-colors cursor-pointer disabled:opacity-50"
+                  className="btn-coral w-full py-3.5 text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-md"
                 >
                   <Lock className="w-3.5 h-3.5" />
                   <span>
@@ -251,10 +234,10 @@ export const KlnkBookingModal: React.FC<KlnkBookingModalProps> = ({
 
                 {/* Direct External Link */}
                 <a
-                  href={tour.klnkUrl}
+                  href={liveTourUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-1 text-center text-xs text-brand-secondary hover:text-white flex items-center justify-center gap-1 transition-colors"
+                  className="w-full py-1 text-center text-xs text-ink-muted hover:text-ink flex items-center justify-center gap-1 transition-colors"
                 >
                   <span>Or view live listing directly on staging.klnk.tv</span>
                   <ExternalLink className="w-3 h-3 text-brand-coral" />

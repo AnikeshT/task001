@@ -22,7 +22,7 @@ interface TourDetailModalProps {
   currency: Currency;
   isOpen: boolean;
   onClose: () => void;
-  onBookKlnk: (tour: TourItem) => void;
+  onBookKlnk?: (tour: TourItem) => void;
 }
 
 export const TourDetailModal: React.FC<TourDetailModalProps> = ({
@@ -30,7 +30,6 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
   currency,
   isOpen,
   onClose,
-  onBookKlnk,
 }) => {
   const [activeTab, setActiveTab] = useState<'itinerary' | 'included' | 'operator'>('itinerary');
   const [expandedDay, setExpandedDay] = useState<number>(1);
@@ -60,11 +59,11 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/85 backdrop-blur-sm overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/70 backdrop-blur-sm overflow-y-auto"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-[#14161b] border border-brand-border-strong rounded-xl shadow-modal overflow-hidden flex flex-col max-h-[90vh] my-auto"
+        className="relative w-full max-w-4xl bg-canvas-card border border-canvas-border rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] my-auto"
         onClick={e => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -73,30 +72,30 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3.5 right-3.5 z-20 p-2 rounded-lg bg-[#0e1013]/80 hover:bg-[#0e1013] text-brand-secondary hover:text-white border border-brand-border transition-colors cursor-pointer"
+          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/90 hover:bg-white text-ink border border-canvas-border shadow-md transition-colors cursor-pointer"
           aria-label="Close details"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Scrollable Content */}
-        <div className="overflow-y-auto custom-scrollbar flex-1">
+        <div className="overflow-y-auto flex-1">
           {/* Header Image & Gallery */}
-          <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-[#0e1013]">
+          <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-canvas">
             <div
               role="img"
               aria-label={`Photo of ${tour.name}`}
               className="w-full h-full bg-cover bg-center transition-all duration-300"
               style={{ backgroundImage: `url('${activePhoto}')` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#14161b] via-[#14161b]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
             {/* Badges */}
             <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-              <span className="px-2.5 py-1 rounded text-xs font-semibold bg-brand-coral text-white shadow-sm">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-brand-coral text-white shadow-xs">
                 {tour.badge || tour.travelStyle}
               </span>
-              <span className="px-2.5 py-1 rounded text-xs font-medium bg-[#0e1013]/90 text-white border border-brand-border flex items-center gap-1">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/95 text-ink border border-canvas-border flex items-center gap-1 shadow-xs">
                 <MapPin className="w-3 h-3 text-brand-coral" />
                 <span>{tour.destination}</span>
               </span>
@@ -108,10 +107,10 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(img)}
-                  className={`w-14 h-10 rounded-md overflow-hidden shrink-0 border transition-all cursor-pointer ${
+                  className={`w-14 h-10 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
                     activePhoto === img
-                      ? 'border-brand-coral scale-105 shadow-sm'
-                      : 'border-brand-border opacity-70 hover:opacity-100'
+                      ? 'border-brand-coral scale-105 shadow-md'
+                      : 'border-white/60 opacity-80 hover:opacity-100'
                   }`}
                   aria-label={`View image ${idx + 1}`}
                 >
@@ -125,57 +124,57 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
           </div>
 
           {/* Details Body */}
-          <div className="p-6 space-y-6">
+          <div className="p-6 sm:p-8 space-y-6">
             {/* Header Information */}
-            <div className="space-y-2 border-b border-brand-border pb-5">
-              <div className="flex flex-wrap items-center gap-3 text-xs text-brand-secondary font-mono">
-                <span className="flex items-center gap-1 text-amber-400 font-semibold font-sans">
-                  <Star className="w-3.5 h-3.5 fill-amber-400" />
+            <div className="space-y-2 border-b border-canvas-border pb-5">
+              <div className="flex flex-wrap items-center gap-3 text-xs text-ink-muted font-semibold">
+                <span className="flex items-center gap-1 text-amber-500">
+                  <Star className="w-4 h-4 fill-amber-400" />
                   <span>{tour.rating}</span>
                 </span>
                 <span>•</span>
                 <span>{tour.reviewCount} verified guest reviews</span>
                 <span>•</span>
-                <span className="text-brand-coral font-medium">{tour.groupSize}</span>
+                <span className="text-brand-coral">{tour.groupSize}</span>
                 <span>•</span>
                 <span>{tour.activityLevel} Activity</span>
               </div>
 
               <h2
                 id="modal-tour-title"
-                className="text-xl sm:text-2xl font-bold text-brand-primary leading-snug"
+                className="text-2xl sm:text-3xl font-display font-bold text-ink leading-tight"
               >
                 {tour.name}
               </h2>
-              <p className="text-xs sm:text-sm text-brand-secondary leading-relaxed">
+              <p className="text-sm text-ink-soft leading-relaxed">
                 {tour.description}
               </p>
             </div>
 
             {/* Key Highlights */}
-            <div className="space-y-2.5">
-              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-brand-primary">
+            <div className="space-y-3">
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-ink">
                 Expedition Highlights
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-ink-soft">
                 {tour.highlights.map((h, i) => (
-                  <div key={i} className="flex items-start gap-2 text-brand-secondary">
-                    <Check className="w-3.5 h-3.5 text-brand-coral shrink-0 mt-0.5" />
-                    <span>{h}</span>
+                  <div key={i} className="flex items-start gap-2 bg-canvas/60 p-3 rounded-xl border border-canvas-border">
+                    <Check className="w-4 h-4 text-brand-coral shrink-0 mt-0.5" />
+                    <span className="leading-relaxed font-medium">{h}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Tab Navigation */}
-            <div className="border-b border-brand-border flex items-center gap-6 text-xs font-semibold">
+            <div className="border-b border-canvas-border flex items-center gap-6 text-xs font-bold">
               <button
                 type="button"
                 onClick={() => setActiveTab('itinerary')}
                 className={`pb-2.5 transition-colors cursor-pointer border-b-2 ${
                   activeTab === 'itinerary'
-                    ? 'border-brand-coral text-white'
-                    : 'border-transparent text-brand-secondary hover:text-white'
+                    ? 'border-ink text-ink'
+                    : 'border-transparent text-ink-muted hover:text-ink'
                 }`}
               >
                 Day-by-Day Itinerary ({tour.itinerary.length} Days)
@@ -185,65 +184,65 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
                 onClick={() => setActiveTab('included')}
                 className={`pb-2.5 transition-colors cursor-pointer border-b-2 ${
                   activeTab === 'included'
-                    ? 'border-brand-coral text-white'
-                    : 'border-transparent text-brand-secondary hover:text-white'
+                    ? 'border-ink text-ink'
+                    : 'border-transparent text-ink-muted hover:text-ink'
                 }`}
               >
-                Inclusions &amp; Meeting Point
+                Inclusions &amp; Logistics
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab('operator')}
                 className={`pb-2.5 transition-colors cursor-pointer border-b-2 ${
                   activeTab === 'operator'
-                    ? 'border-brand-coral text-white'
-                    : 'border-transparent text-brand-secondary hover:text-white'
+                    ? 'border-ink text-ink'
+                    : 'border-transparent text-ink-muted hover:text-ink'
                 }`}
               >
-                Verified Operator
+                Verified Operator ({tour.operator.name})
               </button>
             </div>
 
-            {/* Tab 1: Day-by-Day Itinerary */}
+            {/* Tab 1: Itinerary Accordion */}
             {activeTab === 'itinerary' && (
-              <div className="space-y-2.5">
+              <div className="space-y-3">
                 {tour.itinerary.map(item => {
                   const isExpanded = expandedDay === item.day;
                   return (
                     <div
                       key={item.day}
-                      className="rounded-lg border border-brand-border bg-[#0e1013] overflow-hidden"
+                      className="border border-canvas-border rounded-2xl overflow-hidden bg-white transition-colors"
                     >
                       <button
                         type="button"
                         onClick={() => setExpandedDay(isExpanded ? 0 : item.day)}
-                        className="w-full p-3.5 flex items-center justify-between text-left hover:bg-brand-surface transition-colors cursor-pointer"
+                        className="w-full p-4 flex items-center justify-between text-left hover:bg-canvas/40 transition-colors cursor-pointer"
                       >
                         <div className="flex items-center gap-3">
-                          <span className="w-7 h-7 rounded-md bg-brand-surface border border-brand-border text-brand-coral font-mono text-xs font-bold flex items-center justify-center shrink-0">
-                            D{item.day}
+                          <span className="w-7 h-7 rounded-full bg-ink text-canvas text-xs font-bold flex items-center justify-center shrink-0">
+                            {item.day}
                           </span>
                           <div>
-                            <h4 className="text-xs sm:text-sm font-bold text-brand-primary">{item.title}</h4>
-                            <p className="text-[11px] text-brand-muted line-clamp-1">{item.summary}</p>
+                            <p className="text-sm font-bold text-ink">{item.title}</p>
+                            <p className="text-xs text-ink-muted font-medium">{item.summary}</p>
                           </div>
                         </div>
                         {isExpanded ? (
-                          <ChevronUp className="w-4 h-4 text-brand-muted" />
+                          <ChevronUp className="w-4 h-4 text-ink shrink-0" />
                         ) : (
-                          <ChevronDown className="w-4 h-4 text-brand-muted" />
+                          <ChevronDown className="w-4 h-4 text-ink-muted shrink-0" />
                         )}
                       </button>
 
                       {isExpanded && (
-                        <div className="p-3.5 pt-1 border-t border-brand-border text-xs text-brand-secondary space-y-2 bg-[#0e1013]/60">
+                        <div className="px-4 pb-4 pt-1 border-t border-canvas-border-subtle text-xs text-ink-soft space-y-2.5 bg-canvas/20">
                           <p className="leading-relaxed">{item.description}</p>
-                          <div className="flex flex-wrap items-center gap-3 text-[11px] text-brand-muted pt-2 border-t border-brand-border/40 font-mono">
+                          <div className="flex flex-wrap gap-4 pt-2 text-ink-muted font-mono text-[11px]">
                             {item.mealsIncluded && (
                               <span>Meals: {item.mealsIncluded.join(', ')}</span>
                             )}
                             {item.stayLocation && (
-                              <span>Stay: {item.stayLocation}</span>
+                              <span>Overnight: {item.stayLocation}</span>
                             )}
                           </div>
                         </div>
@@ -254,89 +253,78 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
               </div>
             )}
 
-            {/* Tab 2: Included & Meeting Point */}
+            {/* Tab 2: Inclusions & Logistics */}
             {activeTab === 'included' && (
-              <div className="space-y-5 text-xs">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  {/* Inclusions */}
-                  <div className="rounded-lg bg-[#0e1013] border border-brand-border p-4 space-y-2.5">
-                    <span className="font-mono font-bold uppercase tracking-wider text-brand-emerald block text-[11px]">
-                      Included in Expedition
-                    </span>
-                    <ul className="space-y-1.5 text-brand-secondary">
-                      {tour.included.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <Check className="w-3.5 h-3.5 text-brand-emerald shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Exclusions */}
-                  <div className="rounded-lg bg-[#0e1013] border border-brand-border p-4 space-y-2.5">
-                    <span className="font-mono font-bold uppercase tracking-wider text-brand-muted block text-[11px]">
-                      Not Included
-                    </span>
-                    <ul className="space-y-1.5 text-brand-muted">
-                      {tour.excluded.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-brand-muted mt-1.5 shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="p-5 rounded-2xl bg-white border border-canvas-border space-y-3">
+                  <h4 className="font-bold text-ink uppercase tracking-wider flex items-center gap-1.5 text-[11px]">
+                    <Check className="w-4 h-4 text-emerald-600" />
+                    <span>Included Services</span>
+                  </h4>
+                  <ul className="space-y-2 text-ink-soft">
+                    {tour.included.map((inc, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-1.5 shrink-0" />
+                        <span>{inc}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                {/* Meeting Point Box */}
-                {tour.meetingPoint && (
-                  <div className="rounded-lg bg-[#0e1013] border border-brand-border p-4 flex items-start gap-3">
-                    <MapPin className="w-4 h-4 text-brand-coral shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-mono uppercase font-bold text-[11px] text-brand-primary block">
-                        Official Meeting Coordinates
-                      </span>
-                      <p className="text-xs text-brand-secondary">{tour.meetingPoint}</p>
+                <div className="p-5 rounded-2xl bg-white border border-canvas-border space-y-3">
+                  <h4 className="font-bold text-ink uppercase tracking-wider text-[11px]">
+                    Not Included &amp; Disclaimers
+                  </h4>
+                  <ul className="space-y-2 text-ink-soft">
+                    {tour.excluded.map((exc, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-coral mt-1.5 shrink-0" />
+                        <span>{exc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {tour.meetingPoint && (
+                    <div className="pt-3 border-t border-canvas-border text-ink-muted font-mono text-[11px]">
+                      Departure Launch Pier: {tour.meetingPoint}
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             )}
 
-            {/* Tab 3: Operator Information */}
+            {/* Tab 3: Operator Spotlight */}
             {activeTab === 'operator' && (
-              <div className="rounded-lg bg-[#0e1013] border border-brand-border p-5 space-y-4">
-                <div className="flex items-center gap-3">
+              <div className="p-6 rounded-2xl bg-white border border-canvas-border space-y-4">
+                <div className="flex items-center gap-4">
                   <img
                     src={tour.operator.avatarUrl}
                     alt={tour.operator.name}
-                    className="w-12 h-12 rounded-lg object-cover border border-brand-border shrink-0"
+                    className="w-16 h-16 rounded-full object-cover border-2 border-canvas-border"
                   />
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <h4 className="text-sm font-bold text-brand-primary">{tour.operator.name}</h4>
-                      <ShieldCheck className="w-4 h-4 text-brand-emerald shrink-0" />
+                      <h4 className="text-lg font-display font-bold text-ink">{tour.operator.name}</h4>
+                      <ShieldCheck className="w-4 h-4 text-emerald-600" />
                     </div>
-                    <p className="text-xs text-brand-coral font-medium">{tour.operator.tagline}</p>
-                    <p className="text-[11px] text-brand-muted">{tour.operator.location}</p>
+                    <p className="text-xs text-ink-muted">{tour.operator.location} • Est. {tour.operator.foundedYear}</p>
+                    <p className="text-xs font-semibold text-brand-coral mt-0.5">{tour.operator.tagline}</p>
                   </div>
                 </div>
 
-                <p className="text-xs text-brand-secondary leading-relaxed">{tour.operator.bio}</p>
+                <p className="text-xs text-ink-soft leading-relaxed">{tour.operator.bio}</p>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-3 border-t border-brand-border text-xs font-mono">
+                <div className="grid grid-cols-3 gap-3 pt-3 border-t border-canvas-border text-xs">
                   <div>
-                    <span className="text-brand-muted block text-[10px]">Response Time</span>
-                    <span className="font-bold text-white">{tour.operator.responseTime}</span>
+                    <span className="text-ink-muted block text-[10px] uppercase font-mono">Response Time</span>
+                    <span className="font-bold text-ink">{tour.operator.responseTime}</span>
                   </div>
                   <div>
-                    <span className="text-brand-muted block text-[10px]">Host Rating</span>
-                    <span className="font-bold text-amber-400">★ {tour.operator.rating} / 5</span>
+                    <span className="text-ink-muted block text-[10px] uppercase font-mono">Host Rating</span>
+                    <span className="font-bold text-amber-500">★ {tour.operator.rating} / 5</span>
                   </div>
                   <div>
-                    <span className="text-brand-muted block text-[10px]">Verification</span>
-                    <span className="font-bold text-brand-emerald">{tour.operator.badge}</span>
+                    <span className="text-ink-muted block text-[10px] uppercase font-mono">Verification</span>
+                    <span className="font-bold text-emerald-700">{tour.operator.badge}</span>
                   </div>
                 </div>
               </div>
@@ -344,37 +332,37 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
           </div>
         </div>
 
-        {/* Grounded Sticky Footer Bar */}
-        <div className="p-4 border-t border-brand-border bg-[#0e1013] flex items-center justify-between gap-4 shrink-0">
+        {/* Sticky Footer Bar */}
+        <div className="p-4 sm:p-5 border-t border-canvas-border bg-canvas flex items-center justify-between gap-4 shrink-0">
           <div>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-xl sm:text-2xl font-mono font-bold text-brand-primary">
+              <span className="text-2xl font-display font-extrabold text-ink">
                 {formatPrice(currentPrice, currency)}
               </span>
-              <span className="text-xs text-brand-muted font-mono">/ guest (all-inclusive)</span>
+              <span className="text-xs text-ink-muted">/ traveler (all-inclusive)</span>
             </div>
-            <span className="text-[11px] text-brand-emerald flex items-center gap-1">
-              <Zap className="w-3 h-3" />
+            <span className="text-xs text-emerald-700 font-semibold flex items-center gap-1">
+              <Zap className="w-3 h-3 fill-emerald-600" />
               <span>{tour.remainingSpots} spots remaining for {tour.nextDeparture}</span>
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-lg text-xs font-medium text-brand-secondary hover:text-white bg-brand-surface border border-brand-border transition-colors cursor-pointer hidden sm:block"
+              className="px-4 py-2 rounded-full text-xs font-semibold text-ink hover:text-white bg-canvas-card hover:bg-ink border border-canvas-border transition-colors cursor-pointer hidden sm:block"
             >
               Close
             </button>
 
             <a
-              href={tour.klnkUrl}
+              href="https://staging.klnk.tv/pushpak/2de2d421/italy-trip"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-brand-coral hover:bg-brand-coral-hover text-white transition-colors flex items-center gap-1.5 shadow-sm cursor-pointer"
+              className="btn-coral py-2.5 px-6 text-xs font-semibold flex items-center gap-1.5 shadow-md cursor-pointer"
             >
-              <span>Reserve Direct via staging.klnk.tv</span>
+              <span>Reserve Direct on staging.klnk.tv</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>

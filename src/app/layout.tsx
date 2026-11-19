@@ -6,39 +6,35 @@ import { CookieBanner } from '../components/common/CookieBanner';
 export const metadata: Metadata = {
   metadataBase: new URL('https://tourpublish.com'),
   title: {
-    default: 'Tourpublish | Curated Luxury Tours in Italy - Direct Operator Booking',
-    template: '%s | Tourpublish - Luxury Tours in Italy',
+    default: 'Tourpublish — Travel in Small Groups, Led by Italian Locals',
+    template: '%s | Tourpublish Italy',
   },
   description:
-    'Discover handcrafted luxury tours in Italy across the Amalfi Coast, Tuscany, Dolomites, Sicily, and Lake Como. Zero middleman markup, verified Italian master operators, and instant digital wallet passes powered by staging.klnk.tv.',
+    'Small-group luxury tours across Italy: Amalfi Coast, Tuscany, Dolomites, Lake Como, Sicily, and Venice. Never more than eight travelers, direct operator rates on staging.klnk.tv.',
   keywords: [
-    'Luxury Tours in Italy',
     'Tourpublish',
+    'Luxury Tours in Italy',
     'staging.klnk.tv',
-    'Amalfi Coast Riva Yacht Tour',
-    'Tuscany Brunello Wine Vaults',
-    'Dolomites Via Ferrata Traverse',
-    'Lake Como Wooden Riva Charter',
-    'Sicily Aeolian Catamaran Sail',
-    'Venice Private Water Limousine',
-    'Italian Luxury Travel Directory',
+    'Amalfi Coast Small Group Tour',
+    'Tuscany Wine Tour',
+    'Dolomites Via Ferrata',
+    'Lake Como Riva Charter',
   ],
   authors: [{ name: 'Tourpublish Italia S.r.l.' }],
   creator: 'Tourpublish',
-  publisher: 'Tourpublish Italia S.r.l.',
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.png', sizes: '180x180', type: 'image/png' },
       { url: '/logo.jpg', type: 'image/jpeg' },
     ],
     apple: [
-      { url: '/logo.jpg', sizes: '180x180', type: 'image/jpeg' },
+      { url: '/icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   openGraph: {
-    title: 'Tourpublish — Curated Luxury Tours in Italy',
-    description:
-      'Handcrafted luxury tours in Italy booked direct from verified master operators via staging.klnk.tv.',
+    title: 'Tourpublish — Travel in Small Groups, Led by Italian Locals',
+    description: 'Eight master routes across Italy. Groups of 8 or fewer, fixed all-inclusive prices and direct operator booking on staging.klnk.tv.',
     url: 'https://tourpublish.com',
     siteName: 'Tourpublish',
     images: [
@@ -46,29 +42,11 @@ export const metadata: Metadata = {
         url: '/og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Tourpublish - Curated Luxury Tours in Italy',
+        alt: 'Tourpublish Italy',
       },
     ],
     locale: 'en_IT',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Tourpublish — Curated Luxury Tours in Italy',
-    description: 'Book verified private luxury tours in Italy direct via staging.klnk.tv.',
-    creator: '@tourpublish',
-    images: ['/og.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
   },
 };
 
@@ -79,12 +57,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="bg-brand-dark text-slate-100 min-h-screen flex flex-col selection:bg-brand-coral/30 selection:text-white antialiased">
+      <body className="bg-canvas text-ink min-h-screen flex flex-col selection:bg-brand-coral/20 selection:text-brand-coral antialiased">
         {children}
-        {/* Global GDPR Compliant Cookie Banner */}
         <CookieBanner />
-
-        {/* Lightweight Vercel Analytics Integration */}
         <Script
           id="tourpublish-analytics"
           strategy="afterInteractive"

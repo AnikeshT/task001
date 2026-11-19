@@ -1,202 +1,95 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { ThemeAwareLogo } from '../common/ThemeAwareLogo';
-import { MapPin, Phone, Mail, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ShieldCheck, Mail, MapPin, Phone, ArrowUpRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMessage('');
-    setSuccessMessage('');
-
-    if (!email.trim()) {
-      setErrorMessage('Please enter your email address.');
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.trim())) {
-      setErrorMessage('Please provide a valid email (e.g. name@domain.com).');
-      return;
-    }
-
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSuccessMessage('Grazie! You are subscribed to Tourpublish Italian Dispatches.');
-      setEmail('');
-    }, 600);
-  };
-
   return (
-    <footer className="bg-[#0e1013] border-t border-brand-border pt-16 pb-24 sm:pb-12 text-brand-secondary text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Main 5-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Col 1 & 2: Entity & Concierge Credentials */}
+    <footer className="border-t border-line bg-paper-deep text-ink-soft py-16 text-sm">
+      <div className="container-page space-y-12">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          {/* Col 1: Editorial Colophon & Brand */}
           <div className="lg:col-span-2 space-y-4">
-            <ThemeAwareLogo height={32} lightOnly />
-            <p className="text-brand-secondary text-xs leading-relaxed max-w-sm">
-              The premier curated directory for luxury tours in Italy. Direct host reservations with zero middleman commissions, powered by staging.klnk.tv digital passes.
+            <Link href="/" className="flex items-center gap-3">
+              <ThemeAwareLogo height={28} />
+              <span className="font-serif text-xl tracking-tight font-semibold text-ink">Tourpublish</span>
+            </Link>
+            <p className="text-sm text-ink-soft leading-relaxed max-w-sm">
+              An independent curated directory of verified luxury tours across Italy. We connect travelers directly with vetted Italian nautical, alpine, and cultural operators without middleman markups.
             </p>
-
-            {/* Official Registered Address */}
-            <div className="pt-2 space-y-2 text-brand-primary text-xs">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-brand-coral shrink-0 mt-0.5" />
-                <span>
-                  <strong>Tourpublish Italia S.r.l.</strong>
-                  <br />
-                  Via dei Condotti 85, 00187 Roma (RM), Italy
-                </span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-brand-coral shrink-0" />
-                <a href="tel:+390669874100" className="hover:text-white transition-colors">
-                  +39 06 6987 4100 (Italian Concierge Desk)
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-brand-coral shrink-0" />
-                <a href="mailto:concierge@staging.klnk.tv" className="hover:text-white transition-colors">
-                  concierge@staging.klnk.tv
-                </a>
-              </div>
-              <div className="text-[11px] text-brand-muted font-mono pt-1">
-                Codice Fiscale / P.IVA: IT-84920194821 • REA RM-1428590
-              </div>
+            <div className="text-xs space-y-1 font-mono text-ink-faint pt-2 border-t border-line/60">
+              <p>Tourpublish Italia S.r.l. • P.IVA IT-84920194821</p>
+              <p>Via dei Condotti 85, 00187 Roma (RM), Italy</p>
+              <p>Direct bookings verified via staging.klnk.tv</p>
             </div>
           </div>
 
-          {/* Col 3: Italian Terroirs */}
+          {/* Col 2: Destinations */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-brand-primary">Italian Terroirs</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#tours" className="hover:text-white transition-colors">Amalfi Coast &amp; Capri</a>
-              </li>
-              <li>
-                <a href="#tours" className="hover:text-white transition-colors">Tuscany &amp; Val d’Orcia</a>
-              </li>
-              <li>
-                <a href="#tours" className="hover:text-white transition-colors">Dolomites &amp; South Tyrol</a>
-              </li>
-              <li>
-                <a href="#tours" className="hover:text-white transition-colors">Sicilia &amp; Aeolian Islands</a>
-              </li>
-              <li>
-                <a href="#tours" className="hover:text-white transition-colors">Lake Como &amp; Bellagio</a>
-              </li>
-              <li>
-                <a href="#tours" className="hover:text-white transition-colors">Venice &amp; Venetian Lagoon</a>
-              </li>
+            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">Destinations</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/destinations/amalfi-coast" className="hover:text-ink transition-colors">Amalfi Coast</Link></li>
+              <li><Link href="/destinations/tuscany" className="hover:text-ink transition-colors">Tuscany &amp; Chianti</Link></li>
+              <li><Link href="/destinations/dolomites" className="hover:text-ink transition-colors">Dolomites &amp; Cortina</Link></li>
+              <li><Link href="/destinations/lake-como" className="hover:text-ink transition-colors">Lake Como</Link></li>
+              <li><Link href="/destinations/sicily" className="hover:text-ink transition-colors">Sicily &amp; Aeolian</Link></li>
+              <li><Link href="/destinations" className="text-clay font-medium hover:underline inline-flex items-center gap-0.5">All 8 Terroirs →</Link></li>
             </ul>
           </div>
 
-          {/* Col 4: Platform & Compliance */}
+          {/* Col 3: Ways to Travel */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-brand-primary">staging.klnk.tv</h4>
-            <ul className="space-y-2">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">Ways to Travel</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/experiences/nautical-prive" className="hover:text-ink transition-colors">Nautical Privé</Link></li>
+              <li><Link href="/experiences/alpine-traverses" className="hover:text-ink transition-colors">Alpine Traverses</Link></li>
+              <li><Link href="/experiences/grand-cru-vaults" className="hover:text-ink transition-colors">Grand Cru Vaults</Link></li>
+              <li><Link href="/experiences/aristocratic-villas" className="hover:text-ink transition-colors">Aristocratic Villas</Link></li>
+              <li><Link href="/experiences/artisan-crypts" className="hover:text-ink transition-colors">Artisan &amp; Crypts</Link></li>
+              <li><Link href="/experiences" className="text-clay font-medium hover:underline inline-flex items-center gap-0.5">Explore Styles →</Link></li>
+            </ul>
+          </div>
+
+          {/* Col 4: Directory & Legal */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">Directory</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/about" className="hover:text-ink transition-colors">About Tourpublish</Link></li>
+              <li><Link href="/tours" className="hover:text-ink transition-colors">All Published Tours</Link></li>
+              <li><Link href="/privacy" className="hover:text-ink transition-colors">Privacy &amp; GDPR</Link></li>
+              <li><Link href="/terms" className="hover:text-ink transition-colors">Terms of Service</Link></li>
               <li>
                 <a
                   href="https://staging.klnk.tv/pushpak/2de2d421/italy-trip"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors flex items-center gap-1.5"
+                  className="text-clay hover:text-clay-hover font-medium flex items-center gap-1"
                 >
-                  <span>staging.klnk.tv Engine</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald" />
+                  <span>staging.klnk.tv Link</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
-              </li>
-              <li>
-                <a href="#why-tourpublish" className="hover:text-white transition-colors">Zero Commission Standard</a>
-              </li>
-              <li>
-                <a href="#why-tourpublish" className="hover:text-white transition-colors">Apple &amp; Google Wallet Pass</a>
-              </li>
-              <li>
-                <a href="#operators" className="hover:text-white transition-colors">Verified Italian Masters</a>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-white transition-colors">GDPR Privacy Policy</Link>
-              </li>
-              <li>
-                <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
               </li>
             </ul>
           </div>
-
-          {/* Col 5: Dispatch Newsletter */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-brand-primary">Italian Dispatches</h4>
-            <p className="text-[11px] text-brand-secondary leading-relaxed">
-              Secret departure dates and private Riva yacht charters before public directory release.
-            </p>
-            <form onSubmit={handleSubscribe} className="space-y-2" noValidate>
-              <div className="space-y-1">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={e => {
-                    setEmail(e.target.value);
-                    if (errorMessage) setErrorMessage('');
-                  }}
-                  placeholder="Enter your email address..."
-                  className={`w-full px-3 py-2 rounded-lg bg-brand-surface border text-white placeholder:text-brand-muted text-xs focus:outline-none transition-colors ${
-                    errorMessage
-                      ? 'border-red-500 focus:border-red-500'
-                      : 'border-brand-border focus:border-brand-coral'
-                  }`}
-                  aria-label="Email address for dispatch"
-                />
-                {errorMessage && (
-                  <p className="text-[11px] text-red-400 flex items-center gap-1">
-                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                    <span>{errorMessage}</span>
-                  </p>
-                )}
-                {successMessage && (
-                  <p className="text-[11px] text-brand-emerald flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                    <span>{successMessage}</span>
-                  </p>
-                )}
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-2 rounded-lg bg-brand-coral hover:bg-brand-coral-hover disabled:opacity-60 text-white text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1.5"
-              >
-                <span>{isSubmitting ? 'Subscribing...' : 'Subscribe'}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </form>
-          </div>
         </div>
 
-        {/* Bottom Strip */}
-        <div className="pt-8 border-t border-brand-border flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-brand-muted">
-          <p>© {new Date().getFullYear()} Tourpublish Italia S.r.l. All rights reserved. Registered Italian Travel Directory.</p>
-          <div className="flex items-center gap-5">
-            <Link href="/privacy" className="hover:text-brand-primary transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-brand-primary transition-colors">Terms of Service</Link>
-            <Link href="/thank-you" className="hover:text-brand-primary transition-colors">Confirmation Portal</Link>
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-faint">
+          <p>© {new Date().getFullYear()} Tourpublish Italia S.r.l. All rights reserved.</p>
+          <p className="flex items-center gap-1.5">
+            <span>Direct operator booking protocol powered by</span>
             <a
               href="https://staging.klnk.tv/pushpak/2de2d421/italy-trip"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-brand-primary text-brand-coral font-medium"
+              className="text-ink hover:underline font-semibold"
             >
-              Powered by staging.klnk.tv
+              staging.klnk.tv
             </a>
-          </div>
+          </p>
         </div>
       </div>
     </footer>
