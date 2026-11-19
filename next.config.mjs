@@ -1,0 +1,16 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'cdn.klnk.to' },
+      { protocol: 'https', hostname: 'cdn.filestackcontent.com' },
+      { protocol: 'https', hostname: 'imgcdn.bokun.tools' },
+      { protocol: 'http', hostname: 'bokun.s3.amazonaws.com' },
+      { protocol: 'https', hostname: 'plus.unsplash.com' },
+    ],
+  },
+};
+
+export default nextConfig;
